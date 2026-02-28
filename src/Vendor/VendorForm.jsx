@@ -156,13 +156,17 @@ export default function VendorForm() {
   </button>
 </div>
               </div>
-
-              <button
+              <Link to="/vendor-dashboard">
+              
+               <button
                 type="submit"
                 className="w-full bg-[#8c2b17] text-white py-3 rounded-lg text-lg font-medium mt-2"
               >
                 Submit Request
               </button>
+              </Link>
+
+             
 
             </form>
           </div>

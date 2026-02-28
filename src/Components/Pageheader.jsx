@@ -35,6 +35,11 @@ function Pageheader() {
     path: "/vendor-form",
     },
     {
+      label: "Become a Admin",
+      icon: <Truck size={18} />,
+    path: "/admin-dashboard",
+    },
+    {
       label: "Become a Franchise",
       icon: <Building2 size={18} />,
     },
