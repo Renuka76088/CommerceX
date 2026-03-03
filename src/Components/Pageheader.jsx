@@ -1,14 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import { Search, MapPin, User, ShoppingCart, Grid3X3, Menu,ChevronDown,  Store,
   Truck,
-  Building2, } from "lucide-react";
+  Building2, X,  Sparkles, Flame, ArrowUpRight} from "lucide-react";
 import logo from '../assets/logo.png';
 import { FiPhoneCall } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 function Pageheader() {
     const [isOpen, setIsOpen] = useState(false);
+    const [openSearch, setOpenSearch] = useState(false);
     const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef();
@@ -23,6 +25,14 @@ function Pageheader() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+const trendingItems = [
+    "Cakes",
+    "Birthday",
+    "Romantic Decoration",
+    "Festival Decoration",
+    "Valentines day gift",
+  ];
 
   const options = [
     {
@@ -290,6 +300,7 @@ function Pageheader() {
   ></div>
 )}
 
+<Link to='/'>
 
           <div className="text-center">
            <img
@@ -301,16 +312,122 @@ function Pageheader() {
               <p className="text-xs text-gray-500 mt-1">
                 Prakash Florist              </p>
           </div>
+</Link>
 
-          <div className="flex items-center gap-4">
-            <Search size={22} />
-            <div className="relative">
-              <ShoppingCart size={22} />
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
-                0
-              </span>
+         <div className="flex items-center gap-4">
+  
+  {/* Search Icon */}
+  <Search 
+    size={22} 
+    className="cursor-pointer"
+    onClick={() => setOpenSearch(true)} 
+  />
+
+  <Link to="/cart" className="relative">
+    <div className="relative">
+      <ShoppingCart size={22} />
+      <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
+        0
+      </span>
+    </div>
+  </Link>
+
+</div>
+
+<AnimatePresence>
+      {openSearch && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 bg-white/80 backdrop-blur-xl flex justify-center overflow-y-auto"
+        >
+          {/* CLOSE BUTTON */}
+          <motion.button
+            initial={{ rotate: -90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            onClick={() => setOpenSearch(false)}
+            className="absolute top-6 right-6 p-2 bg-pink-100 text-pink-600 rounded-full hover:bg-pink-200 transition-colors"
+          >
+            <X size={24} />
+          </motion.button>
+
+          <div className="w-full max-w-xl pt-24 px-6">
+            
+            {/* TITLE SECTION */}
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              className="flex items-center gap-4 mb-8"
+            >
+              <div className="bg-gradient-to-br from-pink-400 to-rose-500 p-3 rounded-2xl shadow-lg shadow-pink-200">
+                <Sparkles size={22} className="text-white" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-gray-800 tracking-tight">
+                  Find Something <span className="text-pink-500">Special</span>
+                </h2>
+                <p className="text-sm text-gray-500">Search from 50K+ Premium Products</p>
+              </div>
+            </motion.div>
+
+            {/* SEARCH INPUT */}
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.1 }}
+              className="relative mb-12"
+            >
+              <div className="group flex items-center gap-4 bg-white border-2 border-pink-50 rounded-2xl px-5 py-4 shadow-sm focus-within:shadow-md focus-within:border-pink-200 transition-all duration-300">
+                <Search className="text-pink-400 group-focus-within:scale-110 transition-transform" size={22} />
+                <input
+                  type="text"
+                  placeholder='Search for "Heart Cakes" or "Roses"...'
+                  autoFocus
+                  className="w-full outline-none text-lg text-gray-700 placeholder-gray-300 bg-transparent"
+                />
+              </div>
+            </motion.div>
+
+            {/* TRENDING SECTION */}
+            <div className="space-y-6">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="flex items-center gap-2"
+              >
+                <div className="bg-orange-100 p-1.5 rounded-lg">
+                  <Flame size={18} className="text-orange-500" />
+                </div>
+                <p className="text-[16px] font-bold text-gray-600 uppercase tracking-wider">
+                  Trending Now
+                </p>
+              </motion.div>
+
+              <div className="flex flex-wrap gap-3">
+                {trendingItems.map((item, i) => (
+                  <motion.button
+                    key={i}
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.1 + i * 0.05 }}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setOpenSearch(false)}
+                    className="group flex items-center gap-2 bg-pink-50 hover:bg-pink-500 border border-pink-100 hover:border-pink-500 text-pink-700 hover:text-white px-5 py-2.5 rounded-2xl text-[14px] font-medium transition-all duration-200"
+                  >
+                    {item}
+                    <ArrowUpRight size={14} className="opacity-50 group-hover:opacity-100" />
+                  </motion.button>
+                ))}
+              </div>
             </div>
+
           </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
         </div>
 
         {/* City Row */}
