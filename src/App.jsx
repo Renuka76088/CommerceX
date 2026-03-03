@@ -15,6 +15,7 @@ import VendorDashboard from './Vendor/VendorDashboard'
 import Admin from './Admin/Admin'
 import AdminProfile from './Admin/AdminProfile'
 import VendorProfile from './Vendor/VendorProfile'
+import CitySelection from './Components/CitySelection'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -34,6 +35,7 @@ function App() {
       <Route path='/admin-dashboard' element={<Admin/>}/>
       <Route path='/admin-profile' element={<AdminProfile/>}/>
       <Route path='/vendor-profile' element={<VendorProfile/>}/>
+      <Route path='/select-city' element={<CitySelection/>}/>
     </Routes>
     <Footer/>
     </BrowserRouter>

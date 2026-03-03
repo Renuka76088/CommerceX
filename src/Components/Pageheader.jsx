@@ -255,8 +255,11 @@ const trendingItems = [
   </div>
 
   {/* Menu List */}
-  <div className="p-3 space-y-3 overflow-y-auto h-[80%]">
-
+{/* Main Container: Isse h-full rakhein taaki height fix na ho */}
+<div className="h-full w-full bg-gray-50 overflow-y-auto">
+  
+  <div className="p-3 space-y-3">
+    {/* ===== CATEGORY LIST ===== */}
     {[
       "Flowers",
       "Cakes",
@@ -270,26 +273,61 @@ const trendingItems = [
     ].map((item, index) => (
       <div
         key={index}
-        className="flex items-center justify-between bg-white rounded-xl shadow-sm px-4 py-4 cursor-pointer"
+        className="flex items-center justify-between bg-white rounded-xl shadow-sm px-4 py-4 cursor-pointer active:bg-gray-50 transition-all"
       >
         <div className="flex items-center gap-3">
-          <div className="w-6 h-6 border border-gray-400 rounded-sm grid grid-cols-2 gap-[2px] p-[2px]">
+          <div className="w-5 h-5 border border-gray-300 rounded-sm grid grid-cols-2 gap-[2px] p-[2px]">
             <div className="bg-gray-400"></div>
             <div className="bg-gray-400"></div>
             <div className="bg-gray-400"></div>
             <div className="bg-gray-400"></div>
           </div>
-
-          <span className="text-[16px] font-medium text-gray-700">
-            {item}
-          </span>
+          <span className="text-[16px] font-medium text-gray-700">{item}</span>
         </div>
-
-        <span className="text-gray-400 text-lg">{">"}</span>
+        <span className="text-gray-400 text-lg">›</span>
       </div>
     ))}
 
+    {/* ===== ACTION SECTION (Bottom) ===== */}
+    {/* pb-40 ensures ki 'Call Us' screen ke kaafi upar tak scroll ho jaye */}
+    <div className="mt-8 border-t border-gray-200 pt-6 pb-40 space-y-3">
+      
+      {/* Register Vendor */}
+
+      
+      <div className="flex justify-between items-center px-4 py-4 bg-white rounded-xl shadow-sm border border-orange-50">
+    <Link 
+  to='/vendor-form' 
+  className="flex justify-between items-center px-4 py-4 bg-white rounded-xl shadow-sm border border-orange-50 hover:bg-orange-50 transition-colors cursor-pointer"
+>
+  {/* Left Side: Icon and Text */}
+  <span className="flex items-center gap-3 text-gray-700 font-semibold">
+    <span className="text-xl">👤</span> Register as Vendor
+  </span>
+
+  {/* Right Side: Join Now Button */}
+  <span className="text-orange-500 text-sm font-bold bg-orange-50 ms-5 px-4 py-1 rounded-full border border-orange-100">
+    Join Now
+  </span>
+</Link>
+      </div>
+      
+
+      {/* Call Us */}
+      <div className="flex justify-between items-center px-4 py-4 bg-white rounded-xl shadow-sm border border-blue-50">
+        <span className="flex items-center gap-3 text-gray-700 font-semibold">
+          <span className="text-xl">📞</span> Call Us
+            <div className="text-[11px] text-gray-400 font-medium">9826992210</div>
+        </span>
+        <div className="text-right">
+          <div className="text-blue-600 text-[15px] font-bold">Connect</div>
+          <div className="text-[11px] text-gray-400 font-medium">10AM - 7:30PM</div>
+        </div>
+      </div>
+
+    </div>
   </div>
+</div>
 </div>
 
 {/* Overlay */}
@@ -431,9 +469,13 @@ const trendingItems = [
         </div>
 
         {/* City Row */}
+        <Link to='/select-city'>
+        
+        
         <div className="flex items-center justify-between px-4 py-3 border-t border-gray-100 bg-gray-50">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+       
               <MapPin size={16} />
             </div>
 
@@ -450,6 +492,7 @@ const trendingItems = [
 
           <span className="text-gray-400 text-xl">{">"}</span>
         </div>
+        </Link>
 
       </div>
 
