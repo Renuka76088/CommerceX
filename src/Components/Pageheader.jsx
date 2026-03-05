@@ -238,7 +238,10 @@ const menuItems = [
           <div className="max-w-[1400px] mx-auto px-6 py-3 flex justify-between text-[17px] font-medium text-gray-700">
             <span>Flowers</span>
             <span>Cakes</span>
+            <Link to='/decoration' className="text-pink-500">
             <span>Decorations</span>
+            
+            </Link>
             <span>Gifts</span>
             <span>Experience</span>
             <span>Name Board</span>

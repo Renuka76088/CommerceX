@@ -17,6 +17,12 @@ import AdminProfile from './Admin/AdminProfile'
 import VendorProfile from './Vendor/VendorProfile'
 import CitySelection from './Components/CitySelection'
 
+import About from './Components/About'
+import Contact from './Components/Contact'
+import FAQ from './Components/FAQ'
+import DecorationPage from './Decoration/DecorationPage'
+
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -38,6 +44,8 @@ function App() {
       <Route path='/select-city' element={<CitySelection/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/contact' element={<Contact/>}/>
+      <Route path='/faqs' element={<FAQ/>}/>
+      <Route path='/decoration' element={<DecorationPage/>}/>
     </Routes>
     <Footer/>
     </BrowserRouter>
