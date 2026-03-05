@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, MapPin, User, ShoppingCart, Grid3X3, Menu,ChevronDown,  Store,
   Truck,
-  Building2, X,  Sparkles, Flame, ArrowUpRight} from "lucide-react";
+  Building2, X,  Sparkles, Flame, ArrowUpRight,Info, Phone, MessageCircle, HelpCircle, ChevronRight} from "lucide-react";
 import logo from '../assets/logo.png';
 import { FiPhoneCall } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { FaWhatsapp } from "react-icons/fa";
 
 function Pageheader() {
     const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +60,12 @@ const trendingItems = [
     console.log(label);
     setOpen(false); // auto close
   };
-
+const menuItems = [
+    { label: 'About Us', icon: <Info size={18} />, link: '/about' },
+    { label: 'Contact Us', icon: <Phone size={18} />, link: '/contact' },
+    { label: 'FAQs', icon: <HelpCircle size={18} />, link: '/faqs' },
+    { label: 'WhatsApp Us', icon: <FaWhatsapp size={18} />, link: 'https://wa.me/9826992210', color: 'text-green-500' },
+  ];
 
 
   return (
@@ -174,7 +180,7 @@ const trendingItems = [
   </div>
 )}
     </div>
-            <Link to='/profile'>
+            <Link to='/login'>
             <div className="flex flex-col items-center text-sm">
               <User size={22} />
               <span>Login</span>
@@ -191,10 +197,39 @@ const trendingItems = [
           
           </Link>
 
-            <div className="flex flex-col items-center text-sm">
-              <Grid3X3 size={22} />
-              <span>More</span>
-            </div>
+           <div 
+      className="relative inline-block py-2 z-50"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      {/* Trigger Button */}
+      <div className={`flex flex-col items-center text-sm transition-colors duration-200 cursor-pointer ${isOpen ? 'text-blue-600' : 'text-gray-600'}`}>
+        <Grid3X3 size={22} className={isOpen ? 'rotate-90 transition-transform duration-300' : 'transition-transform duration-300'} />
+        <span className="font-medium">More</span>
+      </div>
+
+      {/* Dropdown Menu - Opens Downwards */}
+      <div 
+        className={`absolute top-full left-1/2 -translate-x-1/2 w-56 pt-2 transition-all duration-300 origin-top
+          ${isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}
+      >
+        <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2 overflow-hidden">
+          {menuItems.map((item, index) => (
+            <a
+              key={index}
+              href={item.link}
+              className="flex items-center justify-between px-4 py-3 hover:bg-blue-50 transition-colors group"
+            >
+              <div className="flex items-center gap-3">
+                <span className={item.color || 'text-gray-500'}>{item.icon}</span>
+                <span className="text-gray-800 font-medium text-[14px]">{item.label}</span>
+              </div>
+              <ChevronRight size={14} className="text-gray-300 group-hover:text-blue-500 transition-transform group-hover:translate-x-1" />
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
           </div>
         </div>
 
