@@ -16,9 +16,6 @@ import Admin from './Admin/Admin'
 import AdminProfile from './Admin/AdminProfile'
 import VendorProfile from './Vendor/VendorProfile'
 import CitySelection from './Components/CitySelection'
-import About from './Components/About.jsx'
-import Contact from './Components/Contact.jsx'
-
 
 function App() {
   const [count, setCount] = useState(0)
