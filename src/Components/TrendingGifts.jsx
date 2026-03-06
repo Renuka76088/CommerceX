@@ -10,14 +10,14 @@ import flower8 from "../assets/flower-8.webp";
 
 function TrendingGifts() {
   const products = [
-    { img: flower1, title: "Red and Pink Roses Hand Bouquet", price: 1799, oldPrice: 2399, discount: "26% OFF", rating: 5, reviews: 720 },
+    { img: flower1, title: "Red and Pink Roses Special Bouquet", price: 1799, oldPrice: 2399, discount: "26% OFF", rating: 5, reviews: 720 },
     { img: flower2, title: "Forever Love 12 Red Roses Bouquet", price: 1499, oldPrice: 1999, discount: "26% OFF", rating: 4.6, reviews: 672 },
-    { img: flower3, title: "Heart of Love Red Roses & Chocolates", price: 4799, oldPrice: 5299, discount: "10% OFF", rating: 4.5, reviews: 718 },
-    { img: flower4, title: "Red Rose Bouquet with Ferrero", price: 3999, oldPrice: 4899, discount: "19% OFF", rating: 4.8, reviews: 715 },
-    { img: flower5, title: "Valentine Special Flower Bouquet", price: 2199, oldPrice: 2899, discount: "25% OFF", rating: 4.7, reviews: 666 },
-    { img: flower6, title: "Luxury Red Roses Basket", price: 2499, oldPrice: 3199, discount: "22% OFF", rating: 4.8, reviews: 530 },
-    { img: flower7, title: "Romantic Love Combo", price: 2999, oldPrice: 3799, discount: "21% OFF", rating: 4.9, reviews: 480 },
-    { img: flower8, title: "Premium Valentine Surprise", price: 3599, oldPrice: 4299, discount: "16% OFF", rating: 4.6, reviews: 390 },
+    { img: flower3, title: "Red Roses & Chocolates Combo", price: 4799, oldPrice: 5299, discount: "10% OFF", rating: 4.5, reviews: 718 },
+    { img: flower4, title: "Rose Bouquet with Ferrero Rocher", price: 3999, oldPrice: 4899, discount: "19% OFF", rating: 4.8, reviews: 715 },
+    { img: flower5, title: "Special Celebration Flower Bouquet", price: 2199, oldPrice: 2899, discount: "25% OFF", rating: 4.7, reviews: 666 },
+    { img: flower6, title: "Luxury Roses Basket Arrangement", price: 2499, oldPrice: 3199, discount: "22% OFF", rating: 4.8, reviews: 530 },
+    { img: flower7, title: "Romantic Flower & Chocolate Combo", price: 2999, oldPrice: 3799, discount: "21% OFF", rating: 4.9, reviews: 480 },
+    { img: flower8, title: "Premium Celebration Surprise Combo", price: 3599, oldPrice: 4299, discount: "16% OFF", rating: 4.6, reviews: 390 },
   ];
 
   return (
@@ -26,10 +26,11 @@ function TrendingGifts() {
 
         {/* Heading */}
         <h2 className="text-4xl font-extrabold text-[#b1123f] tracking-tight">
-          Trending Valentine Gifts for Couples ❤️
+          Trending Occasion Combos 🎁
         </h2>
+
         <p className="text-lg text-gray-600 mt-3 mb-12">
-          Wide Range of Options
+          Perfect Flower & Gift Combos for Every Celebration
         </p>
 
         {/* Scrollable Row */}
@@ -40,7 +41,7 @@ function TrendingGifts() {
               key={i}
               className="min-w-[300px] bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 group relative overflow-hidden transform hover:-translate-y-3"
             >
-              {/* Image Section */}
+              {/* Image */}
               <div className="relative h-[280px] w-full overflow-hidden">
                 <img
                   src={item.img}
@@ -48,10 +49,9 @@ function TrendingGifts() {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
 
-                {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-70"></div>
 
-                {/* Discount Badge */}
+                {/* Discount */}
                 <div className="absolute top-4 left-4 bg-white text-green-700 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
                   {item.discount}
                 </div>
@@ -64,7 +64,6 @@ function TrendingGifts() {
 
               {/* Content */}
               <div className="px-6 py-5">
-
                 <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
                   {item.title}
                 </h3>
@@ -86,10 +85,9 @@ function TrendingGifts() {
                   <span>{item.rating}</span>
                   <span>({item.reviews})</span>
                 </div>
-
               </div>
 
-              {/* Premium Glow Border */}
+              {/* Hover Border */}
               <div className="absolute inset-0 rounded-3xl ring-1 ring-transparent group-hover:ring-pink-300 transition duration-500"></div>
             </div>
           ))}

@@ -13,11 +13,16 @@ import CategorySection from "./CategorySection";
 import BestSeller from "./BestSeller";
 import TestimonialSection from "./testimonials";
 import WhyChooseUs from "./WhyChooseUs";
+import Flowerproducts from "./Flowerproducts";
+import FlowerDecoration from "./FlowerDecoration";
+import DayFlowerDelivery from "../Components/DayFlowerDelivery ";
+import PhotoGallery from "./PhotoGallery";
+import AboutUs from "./AboutUs";
 
 function LandingPage() {
   return (
     <>
-   <div className="w-screen h-[60vh] md:h-[80vh] lg:h-screen mt-0">
+<div className="w-full h-[70vh] md:h-[85vh] lg:h-screen">
   <div className="w-full h-full rounded-none overflow-hidden relative group">
 
     <Swiper
@@ -66,11 +71,19 @@ function LandingPage() {
 
   </div>
 </div>
+<div className="mb-19">
+  <AboutUs/>
+</div>
     <CategorySection/>
     <BestSeller/>
+    <Flowerproducts/>
+    <FlowerDecoration/>
     <TrendingGifts/>
+   <DayFlowerDelivery/>
+    <PhotoGallery/>
     <OccasionSection/>
     <TestimonialSection/>
+
     <WhyChooseUs/>
 
     </>
@@ -80,7 +93,7 @@ function LandingPage() {
 function BannerSlide({ bg, small, title, desc }) {
   return (
     <div
-      className="relative w-full h-[280px] md:h-[420px] lg:h-[480px] flex items-center"
+     className="relative w-full h-full flex items-center"
       style={{
         backgroundImage: `url(${bg})`,
         backgroundSize: "cover",

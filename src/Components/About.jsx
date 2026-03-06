@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import aboutImg from "../assets/About.png"; // apni image yaha lagao
 import { 
   Flower, 
   PartyPopper, 
@@ -94,7 +95,7 @@ const About = () => {
           <div className="relative group">
             <div className="relative z-10 overflow-hidden rounded-[2.5rem] shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800" 
+                src={aboutImg} 
                 alt="Floral Luxury" 
                 className="w-full h-[600px] object-cover hover:scale-105 transition-transform duration-700"
               />

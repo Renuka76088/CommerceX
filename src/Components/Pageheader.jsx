@@ -13,10 +13,45 @@ function Pageheader() {
     const [isOpen, setIsOpen] = useState(false);
     const [openSearch, setOpenSearch] = useState(false);
     const navigate = useNavigate();
+    const [expandedMenu, setExpandedMenu] = useState(null); // 2. Yeh line add karein (Error yahi se aa raha hai)
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef();
    const theme = "#1f4d5a";
      // Close on outside click
+
+     const menuData = [
+  { name: 'Home', path: '/' },
+  {
+    name: 'Flower Products',
+    path: '/decoration',
+    subcategories: [
+      { title: 'Floral Types', items: ['All Flowers', 'Carnations', 'Combos', 'Gerberas', 'Lilies', 'Mixed Flowers', 'Orchids', 'Roses'] },
+      { title: 'By Occasions', items: ['Birthday', 'Anniversary', 'Valentine Day', 'Wedding'] },
+      { title: 'Roses by Colour', items: ['Pink', 'Red', 'White', 'Yellow'] },
+      { title: 'Send Flowers To', items: ['Ahmedabad', 'Bangalore', 'Chennai', 'Delhi NCR', 'Hyderabad', 'Kolkata', 'Mumbai', 'Pune'] }
+    ]
+  },
+  {
+    name: 'Flower Decoration',
+    path: '/specialized-decoration',
+    subcategories: [
+      { title: 'By Occasions', items: ['All Decorations', 'Anniversary', 'Baby Shower', 'Baby Welcome', 'Birthday', 'Christmas', 'Festival', 'Kid\'s Birthday', 'Proposal'] },
+      { title: 'Other Decorations', items: ['Cabana Decorations', 'Canopy Decorations', 'Car Boot Decorations', 'Ceremony Decorations', 'Flower Decorations', 'Office Decorations', 'Room Decorations', 'Stage Decorations', 'Terrace Decorations'] },
+      { title: 'City Wise', items: ['Ahmedabad', 'Bangalore', 'Chennai', 'Delhi NCR', 'Hyderabad', 'Gurugram', 'Kolkata', 'Mumbai', 'Pune'] }
+    ]
+  },
+  {
+    name: 'Wedding',
+    path: '/wedding-event-decor',
+    subcategories: [
+      { title: 'Wedding Services', items: ['Bride To be Decoration', 'Bride Welcome Decoration', 'Engagement Ring Platter', 'First Night Decorations', 'Haldi Decorations', 'Mehndi Decorations', 'Wedding Car Decorations'] }
+    ]
+  },
+  { name: 'Gallery', path: '/gallery' },
+  { name: 'About Us', path: '/about' },
+  { name: 'Contact Us', path: '/contact' },
+  { name: 'FAQs', path: '/faqs' },
+];
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -35,16 +70,42 @@ const trendingItems = [
     "Valentines day gift",
   ];
 
-  const menuItems1 = [
+const menuItems1 = [
   { name: "Home", path: "/" },
+  { 
+    name: "Flower Products", 
+    path: "/decoration",
+    subcategories: [
+      { title: 'Floral Types', items: ['All Flowers', 'Carnations', 'Combos', 'Gerberas', 'Lilies', 'Mixed Flowers', 'Orchids', 'Roses'] },
+      { title: 'By Occasions', items: ['Birthday', 'Anniversary', 'Valentine Day', 'Wedding'] },
+      { title: 'Roses by Colour', items: ['Pink', 'Red', 'White', 'Yellow'] },
+      { title: 'Send Flowers To', items: ['Ahmedabad', 'Bangalore', 'Chennai', 'Delhi NCR', 'Hyderabad', 'Kolkata', 'Mumbai', 'Pune'] }
+    ]
+  },
+  { 
+    name: "Flower Decoration", 
+    path: "/specialized-decoration",
+    subcategories: [
+      { title: 'By Occasions', items: ['All Decorations', 'Anniversary', 'Baby Shower', 'Baby Welcome', 'Birthday', 'Christmas', 'Festival', 'Kid\'s Birthday', 'Proposal'] },
+      { title: 'Other Decorations', items: ['Cabana Decorations', 'Canopy Decorations', 'Car Boot Decorations', 'Ceremony Decorations', 'Flower Decorations', 'Office Decorations', 'Room Decorations', 'Stage Decorations', 'Terrace Decorations'] },
+      { title: 'City Wise', items: ['Ahmedabad', 'Bangalore', 'Chennai', 'Delhi NCR', 'Hyderabad', 'Gurugram', 'Kolkata', 'Mumbai', 'Pune'] }
+    ]
+  },
+  { 
+    name: "Wedding", 
+    path: "/wedding-event-decor",
+    subcategories: [
+      { title: 'Wedding Services', items: ['Bride To be Decoration', 'Bride Welcome Decoration', 'Engagement Ring Platter', 'First Night Decorations', 'Haldi Decorations', 'Mehndi Decorations', 'Wedding Car Decorations'] }
+    ]
+  },
+  { name: "Gallery", path: "/gallery" },
   { name: "About Us", path: "/about" },
   { name: "Contact Us", path: "/contact" },
-  { name: "FAQ`s", path: "/faqs" },
-  { name: "Flowers", path: "/decoration" },
-  { name: "Wedding & Event Decor", path: "/wedding-event-decor" },
-  { name: "Specialized Decoration", path: "/specialized-decoration" },
+  { name: "FAQ's", path: "/faqs" },
   { name: "Visit Our Store", path: "/visit-our-shop" },
   { name: "Blog", path: "/blog" },
+  { name: "Shop More", path: "/shop-more" },
+  
 ];
   const options = [
     {
@@ -214,79 +275,96 @@ const menuItems = [
       onMouseLeave={() => setIsOpen(false)}
     >
       {/* Trigger Button */}
-      <div className={`flex flex-col items-center text-sm transition-colors duration-200 cursor-pointer ${isOpen ? 'text-blue-600' : 'text-gray-600'}`}>
-        <Grid3X3 size={22} className={isOpen ? 'rotate-90 transition-transform duration-300' : 'transition-transform duration-300'} />
-        <span className="font-medium">More</span>
-      </div>
+     <Link
+  to="/shop-more"
+  className="flex flex-col items-center text-sm transition-colors duration-200 cursor-pointer text-gray-600 hover:text-blue-600"
+>
+  <Grid3X3
+    size={22}
+    className="transition-transform duration-300 hover:rotate-90"
+  />
+  <span className="font-medium">Shop More</span>
+</Link>
 
       {/* Dropdown Menu - Opens Downwards */}
-      <div 
-        className={`absolute top-full left-1/2 -translate-x-1/2 w-56 pt-2 transition-all duration-300 origin-top
-          ${isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}
-      >
-        <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2 overflow-hidden">
-          {menuItems.map((item, index) => (
-            <a
-              key={index}
-              href={item.link}
-              className="flex items-center justify-between px-4 py-3 hover:bg-blue-50 transition-colors group"
-            >
-              <div className="flex items-center gap-3">
-                <span className={item.color || 'text-gray-500'}>{item.icon}</span>
-                <span className="text-gray-800 font-medium text-[14px]">{item.label}</span>
-              </div>
-              <ChevronRight size={14} className="text-gray-300 group-hover:text-blue-500 transition-transform group-hover:translate-x-1" />
-            </a>
-          ))}
-        </div>
-      </div>
+    
     </div>
           </div>
         </div>
 
         {/* Bottom Nav */}
-        <div className="border-t border-gray-200">
-          <div className="max-w-[1400px] mx-auto px-6 py-3 flex justify-between text-[17px] font-medium text-gray-700">
-           <Link to='/'>
-           <span>Home</span>
-           
-           </Link> 
-            <Link to='/about' >
-            <span>About Us</span>
-            </Link>
-            <Link to='/contact'>
-            <span>Contact Us</span>
-            
-            </Link>
-            <Link to='/faqs'>
-            <span>FAQs</span>
-            </Link>
-            <Link to='/decoration' > 
-            <span>Flowers</span>
-            </Link>
-            <Link to='/wedding-event-decor' >
-            
-            
-            <span> Wedding & Event Decor</span>
-            </Link>
+   <div className="border-t border-gray-200 bg-white sticky top-0 z-50">
+  <div className="max-w-[1400px] mx-auto px-6 flex justify-between items-center h-16">
 
-            <Link to='/specialized-decoration'>
-              <span>Specialized Decoration</span>
-            </Link>
-            
-          
-            <Link to='/visit-our-shop'>
-            
-            <span>Visit Our Store</span>
-            
-            </Link>
-            <Link to='/blog'>
-            <span>Blog</span>
-            
-            </Link>
-           
+    {menuData.map((menu, index) => (
+      <div key={index} className="relative group h-full flex items-center">
+
+        {/* Main Link */}
+        <Link
+          to={menu.path}
+          className="text-[17px] font-semibold text-gray-700 hover:text-rose-600 transition-colors duration-200 flex items-center gap-1 py-4"
+        >
+          {menu.name}
+
+          {menu.subcategories && (
+            <span className="text-[12px] group-hover:rotate-180 transition-transform duration-300">
+              ▼
+            </span>
+          )}
+        </Link>
+
+        {/* Dropdown */}
+        {menu.subcategories && (
+          <div className="absolute top-full left-0 hidden group-hover:flex bg-white border border-gray-100 shadow-xl p-6 gap-8 rounded-b-xl animate-in fade-in slide-in-from-top-2 duration-300 w-max">
+
+            {menu.subcategories.map((sub, idx) => (
+              <div key={idx} className="flex flex-col">
+
+                <h4 className="font-semibold text-gray-900 text-[15px] mb-3 border-b border-rose-100 pb-1">
+                  {sub.title}
+                </h4>
+
+                <ul className="space-y-2">
+                  {sub.items.map((item, i) => (
+                    <li key={i}>
+                      <Link
+                        to={`${menu.path}/${item
+                          .toLowerCase()
+                          .replace(/ /g, "-")}`}
+                        className="text-gray-500 text-[14px] hover:text-rose-500 hover:translate-x-1 transition-all inline-block"
+                      >
+                        {item}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+
+              </div>
+            ))}
+
           </div>
-        </div>
+        )}
+
+      </div>
+    ))}
+
+    {/* Extra Links */}
+    <Link
+      to="/visit-our-shop"
+      className="text-[17px] font-semibold text-gray-700 hover:text-rose-600 transition-colors"
+    >
+      Visit Our Store
+    </Link>
+
+    <Link
+      to="/blog"
+      className="text-[17px] font-semibold text-gray-700 hover:text-rose-600 transition-colors"
+    >
+      Blog
+    </Link>
+
+  </div>
+</div>
 
       </div>
 
@@ -328,39 +406,81 @@ const menuItems = [
   </div>
 
   {/* Menu List */}
-  <div className="h-full w-full bg-gray-50 overflow-y-auto">
-    <div className="p-3 space-y-3">
+<div className="h-full w-full bg-gray-50 overflow-y-auto pb-24">
+  <div className="p-3 space-y-3">
 
-      {menuItems1.map((item, index) => (
+    {menuItems1.map((item, index) => {
 
-        <Link
-          to={item.path}
-          key={index}
-          onClick={() => setIsOpen(false)}   // ⭐ menu auto close
-          className="flex items-center justify-between bg-white rounded-xl shadow-sm px-4 py-4 cursor-pointer active:bg-gray-50 transition-all"
-        >
+      const hasSub = item.subcategories && item.subcategories.length > 0;
+      const isExpanded = expandedMenu === index;
 
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5 border border-gray-300 rounded-sm grid grid-cols-2 gap-[2px] p-[2px]">
-              <div className="bg-gray-400"></div>
-              <div className="bg-gray-400"></div>
-              <div className="bg-gray-400"></div>
-              <div className="bg-gray-400"></div>
+      return (
+        <div key={index} className="flex flex-col">
+
+          {/* Main Item */}
+          {!hasSub ? (
+            <Link
+              to={item.path}
+              onClick={() => setIsOpen(false)}
+              className="flex items-center justify-between bg-white rounded-xl shadow-sm px-4 py-4 cursor-pointer"
+            >
+              <span className="text-[16px] font-medium text-gray-700">
+                {item.name}
+              </span>
+
+              <span className="text-gray-400 text-lg">›</span>
+            </Link>
+          ) : (
+            <div
+              onClick={() => setExpandedMenu(isExpanded ? null : index)}
+              className="flex items-center justify-between bg-white rounded-xl shadow-sm px-4 py-4 cursor-pointer"
+            >
+              <span className="text-[16px] font-medium text-gray-700">
+                {item.name}
+              </span>
+
+              <span
+                className={`text-gray-400 text-lg transition-transform ${
+                  isExpanded ? "rotate-90 text-pink-500" : ""
+                }`}
+              >
+                ›
+              </span>
             </div>
+          )}
 
-            <span className="text-[16px] font-medium text-gray-700">
-              {item.name}
-            </span>
-          </div>
+          {/* Sub Menu */}
+          {hasSub && isExpanded && (
+            <div className="bg-white px-4 py-3 space-y-2">
+              {item.subcategories.map((sub, idx) => (
+                <div key={idx}>
+                  <h4 className="text-xs font-bold text-gray-400 mb-2">
+                    {sub.title}
+                  </h4>
 
-          <span className="text-gray-400 text-lg">›</span>
+                  {sub.items.map((subItem, i) => (
+                    <Link
+                      key={i}
+                      to={`${item.path}/${subItem
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}`}
+                      onClick={() => setIsOpen(false)}
+                      className="block text-sm text-gray-600 hover:text-pink-500"
+                    >
+                      {subItem}
+                    </Link>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
 
-        </Link>
+        </div>
+      );
+    })}
 
-      ))}
-
-    </div>
   </div>
+</div>
 </div>
 
 {/* Overlay */}

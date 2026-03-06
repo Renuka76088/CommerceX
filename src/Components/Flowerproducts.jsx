@@ -11,22 +11,23 @@ import ChicRose2 from '../assets/chic-rose-birthday-box-9764130fl-B.avif'
 import Enchanting1 from '../assets/enchanting-flower-for-mom-9779500fl-A.avif'
 import Enchanting2 from '../assets/enchanting-flower-for-mom-9779500fl-C.avif'
 import Blaze1 from '../assets/IMG_6743_0.avif'
-import Blaze2 from '../assets/IMG_6744_0 (1).avif'
-import Blush1 from '../assets/a-love-note-in-pink-roses-9716450fl-A_0.avif'
-import Blush2 from '../assets/a-love-note-in-pink-roses-9716450fl-C_0.avif'
-import Bouquet1 from '../assets/heart-full-of-roses-9753900fl-B_0.avif'
-import Bouquet2 from '../assets/heart-full-of-roses-9753900fl-A_0.avif'
+import Blaze2 from '../assets/heart-full-of-roses-9753900fl-B_0.avif'
+import Blush1 from '../assets/cat-3.webp'
+import Blush2 from '../assets/pastel-blooms-of-serenity-2.avif'
+import Bouquet1 from '../assets/a-bouquet-of-tender-moments-9717590fl-B_0.avif'
+import Rose25 from '../assets/flower-6.webp'
 import { Link } from "react-router-dom";
 
 
 const categories = [
  
-  "Flower Bouquets",
-  "Flower Boxes",
-  "Flower Baskets",
-  "Flower Combos",
-  "Loose Flowers",
-  "Flower Garlands",
+  "12 Red Rose Bouquet",
+  "25 Red Rose Bouquet",
+  "Mixed Flower Bouquet",
+  "Lily Bouquet",
+  "Red Rose Box",
+  "Flower Basket",
+
 
 
 ];
@@ -35,7 +36,7 @@ const products = [
   {
     id: 1,
     title: "Pastel Blooms Of Serenity",
-    category: "Flower Bouquets",
+    category: "",
     price: 595,
     oldPrice: 795,
     discount: "26% OFF",
@@ -50,7 +51,7 @@ const products = [
   {
     id: 2,
     title: "10 Red Roses Bouquet",
-    category: "Flower Bouquets",
+    category: "12 Red Rose Bouquet",
     price: 595,
     oldPrice: 795,
     discount: "26% OFF",
@@ -64,8 +65,8 @@ const products = [
   },
   {
     id: 3,
-    title: "Whispers Of Affection Pink Roses Bouquet",
-    category: "Flower Bouquets",
+    title: "25 Red Rose Bouquet",
+    category: "25 Red Rose Bouquet",
     price: 595,
     oldPrice: 795,
     discount: "26% OFF",
@@ -73,14 +74,14 @@ const products = [
     reviews: 2,
     delivery: "In 3 hours",
     images: [
-     PinkRoses1,
-    PinkRoses2,
+    Rose25,
+   
     ],
   },
   {
     id: 4,
-    title: "Chic Rose Birthday Box",
-    category: "Flower Bouquets",
+    title: "Mixed Flower Bouquet",
+    category: "Mixed Flower Bouquet",
     price: 595,
     oldPrice: 795,
     discount: "26% OFF",
@@ -88,14 +89,14 @@ const products = [
     reviews: 2,
     delivery: "In 3 hours",
     images: [
-     ChicRose1,
-    ChicRose2,
+     Bouquet1,
+  
     ],
   },
   {
     id: 5,
     title: "Enchanting Flowers",
-    category: "Flower Boxes",
+    category: "Mixed Flower Bouquet",
     price: 795,
     oldPrice: 999,
     discount: "21% OFF",
@@ -103,16 +104,13 @@ const products = [
     reviews: 676,
     delivery: "In 3 hours",
     images: [
-      Bouquet1,
-     Bouquet2,
-  
-     
+Blush2      
     ],
   },
   {
     id: 6,
-    title: "Blaze Red Velvet Roses",
-    category: "Kids Theme",
+    title: "Lily Bouquet",
+    category: "Lily Bouquet",
     price: 795,
     oldPrice: 999,
     discount: "21% OFF",
@@ -120,14 +118,13 @@ const products = [
     reviews: 676,
     delivery: "In 3 hours",
     images: [
-     "https://media.istockphoto.com/id/1702577362/photo/adorable-infant-dressed-as-hindu-god-krishna-on-the-occasion-of-janmashtami-celebrated-at.jpg?s=612x612&w=0&k=20&c=L-VdwfK6AEfj2PDtyP9NdBodSYuqKB-KszNH2rYV-bM=",
-  
+Blush1  
     ],
   },
   {
     id: 7,
     title: "Gerberas Writing A Sunny Tale",
-    category: "BabyShower",
+    category: "Red Rose Box",
     price: 795,
     oldPrice: 999,
     discount: "21% OFF",
@@ -135,8 +132,7 @@ const products = [
     reviews: 676,
     delivery: "In 3 hours",
     images: [
-      "https://media.istockphoto.com/id/984347042/photo/baby-girl-in-the-basket.jpg?s=612x612&w=0&k=20&c=S3e-UVIms6L_iej6upL6RrGUHO6gJqAO_VxTUYUP3Hc=",
-      
+Blaze2      
     ],
   },
   {
@@ -489,8 +485,8 @@ const products = [
 
 ];
 
-export default function BestSeller() {
-  const [activeCategory, setActiveCategory] = useState("Flower Bouquets");
+export default function Flowerproducts() {
+  const [activeCategory, setActiveCategory] = useState("12 Red Rose Bouquet");
   
 const filteredProducts = products.filter(
   (p) => p.category === activeCategory
@@ -503,7 +499,7 @@ const filteredProducts = products.filter(
   {/* HEADING */}
   <div className="mb-6 text-center">
     <h2 className="text-2xl md:text-3xl font-bold text-pink-600">
-      Shop by Category
+      Popular Flower Products
     </h2>
     <p className="text-gray-500 text-sm md:text-base mt-2">
       Explore decorations and floral arrangements for every occasion

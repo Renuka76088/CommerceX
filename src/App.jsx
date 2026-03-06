@@ -25,6 +25,10 @@ import WeddingEventDecoration from './Decoration/Wedding&EventDecor'
 import SpecializedDecoration from './Decoration/SpecializedDecoration'
 import Visitourshop from './Decoration/Visitourshop'
 import Blog from './Decoration/Blog'
+import BookNow from './Components/BookNow'
+
+import Gallery from './Components/Gallery'
+import ShopMore from './Components/ShopMore'
 
 
 function App() {
@@ -54,6 +58,9 @@ function App() {
       <Route path='/specialized-decoration' element={<SpecializedDecoration/>}/>
       <Route path='/visit-our-shop' element={<Visitourshop/>}/>
       <Route path='/blog' element={<Blog/>}/>
+      <Route path='/book-now' element={<BookNow/>}/>
+      <Route path='/gallery' element={<Gallery/>}/>
+      <Route path='/shop-more' element={<ShopMore/>}/>
     </Routes>
     <Footer/>
     </BrowserRouter>

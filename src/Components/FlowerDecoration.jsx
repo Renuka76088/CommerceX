@@ -14,19 +14,17 @@ import Blaze1 from '../assets/IMG_6743_0.avif'
 import Blaze2 from '../assets/IMG_6744_0 (1).avif'
 import Blush1 from '../assets/a-love-note-in-pink-roses-9716450fl-A_0.avif'
 import Blush2 from '../assets/a-love-note-in-pink-roses-9716450fl-C_0.avif'
-import Bouquet1 from '../assets/heart-full-of-roses-9753900fl-B_0.avif'
-import Bouquet2 from '../assets/heart-full-of-roses-9753900fl-A_0.avif'
+import Bouquet1 from '../assets/a-bouquet-of-tender-moments-9717590fl-B_0.avif'
+import Bouquet2 from '../assets/a-bouquet-of-tender-moments-9717590fl-E_0.avif'
 import { Link } from "react-router-dom";
 
 
 const categories = [
  
-  "Flower Bouquets",
-  "Flower Boxes",
-  "Flower Baskets",
-  "Flower Combos",
-  "Loose Flowers",
-  "Flower Garlands",
+  "Wedding Decoration",
+  "Event Decoration",
+  "Car Decoration",
+ 
 
 
 ];
@@ -35,7 +33,7 @@ const products = [
   {
     id: 1,
     title: "Pastel Blooms Of Serenity",
-    category: "Flower Bouquets",
+    category: "Event Decoration",
     price: 595,
     oldPrice: 795,
     discount: "26% OFF",
@@ -43,14 +41,13 @@ const products = [
     reviews: 2,
     delivery: "In 3 hours",
     images: [
-      Pastelblooms1,
-      Pastelblooms2,
+    "https://images.unsplash.com/photo-1715521801542-3da5c5d025e8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D"
     ],
   },
   {
     id: 2,
     title: "10 Red Roses Bouquet",
-    category: "Flower Bouquets",
+    category: "Event Decoration",
     price: 595,
     oldPrice: 795,
     discount: "26% OFF",
@@ -58,14 +55,13 @@ const products = [
     reviews: 2,
     delivery: "In 3 hours",
     images: [
-      Roses1,
-      Roses2,
+     "https://media.istockphoto.com/id/1468558932/photo/beautiful-indian-women-in-saris-decorating-rangoli-with-oil-lamps-sitting-at-the-entrance-of.jpg?s=612x612&w=0&k=20&c=SKahIBZQ96aXrFBe4pAy5JDSDxAB-Bm3tBubGGHIwQ8="
     ],
   },
   {
     id: 3,
-    title: "Whispers Of Affection Pink Roses Bouquet",
-    category: "Flower Bouquets",
+    title: "Event Decoration",
+    category: "Event Decoration",
     price: 595,
     oldPrice: 795,
     discount: "26% OFF",
@@ -73,14 +69,13 @@ const products = [
     reviews: 2,
     delivery: "In 3 hours",
     images: [
-     PinkRoses1,
-    PinkRoses2,
+   "https://images.unsplash.com/photo-1583018084630-6ea1897b841e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGV2ZW50cyUyMGRlY29yYXRpb24lMjBieWZsb3dlcnN8ZW58MHx8MHx8fDA%3D"
     ],
   },
   {
     id: 4,
     title: "Chic Rose Birthday Box",
-    category: "Flower Bouquets",
+    category: "",
     price: 595,
     oldPrice: 795,
     discount: "26% OFF",
@@ -95,7 +90,7 @@ const products = [
   {
     id: 5,
     title: "Enchanting Flowers",
-    category: "Flower Boxes",
+    category: "Kids Theme",
     price: 795,
     oldPrice: 999,
     discount: "21% OFF",
@@ -103,9 +98,7 @@ const products = [
     reviews: 676,
     delivery: "In 3 hours",
     images: [
-      Bouquet1,
-     Bouquet2,
-  
+     "https://images.unsplash.com/photo-1632296521525-bccf83b80160?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D",
      
     ],
   },
@@ -369,7 +362,7 @@ const products = [
   {
     id: 23,
     title: "Red Radiance Birthday Roses",
-    category: "Car Boot",
+    category: "Car Decoration",
     price: 795,
     oldPrice: 999,
     discount: "21% OFF",
@@ -384,7 +377,7 @@ const products = [
   {
     id: 24,
     title: "Red Radiance Birthday Roses",
-    category: "Car Boot",
+    category: "Car Decoration",
     price: 795,
     oldPrice: 999,
     discount: "21% OFF",
@@ -399,7 +392,7 @@ const products = [
   {
     id: 25,
     title: "Red Radiance Birthday Roses",
-    category: "Car Boot",
+    category: "Car Decoration",
     price: 795,
     oldPrice: 999,
     discount: "21% OFF",
@@ -414,7 +407,7 @@ const products = [
   {
     id: 26,
     title: "Red Radiance Birthday Roses",
-    category: "Car Boot",
+    category: "Car Decoration",
     price: 795,
     oldPrice: 999,
     discount: "21% OFF",
@@ -429,7 +422,7 @@ const products = [
   {
     id: 27,
     title: "Red Radiance Birthday Roses",
-    category: "Wedding",
+    category: "Wedding Decoration",
     price: 795,
     oldPrice: 999,
     discount: "21% OFF",
@@ -444,7 +437,7 @@ const products = [
   {
     id: 28,
     title: "Red Radiance Birthday Roses",
-    category: "Wedding",
+    category: "Wedding Decoration",
     price: 795,
     oldPrice: 999,
     discount: "21% OFF",
@@ -459,7 +452,7 @@ const products = [
   {
     id: 29,
     title: "Red Radiance Birthday Roses",
-    category: "Wedding",
+    category: "Wedding Decoration",
     price: 795,
     oldPrice: 999,
     discount: "21% OFF",
@@ -474,7 +467,7 @@ const products = [
   {
     id: 30,
     title: "Red Radiance Birthday Roses",
-    category: "Wedding",
+    category: "Wedding Decoration",
     price: 795,
     oldPrice: 999,
     discount: "21% OFF",
@@ -489,8 +482,8 @@ const products = [
 
 ];
 
-export default function BestSeller() {
-  const [activeCategory, setActiveCategory] = useState("Flower Bouquets");
+export default function FlowerDecoration() {
+  const [activeCategory, setActiveCategory] = useState("Wedding Decoration");
   
 const filteredProducts = products.filter(
   (p) => p.category === activeCategory
@@ -498,12 +491,14 @@ const filteredProducts = products.filter(
   
 
   return (
+
+    <>
  <div className="p-4 md:p-6 bg-gray-100 min-h-screen">
 
   {/* HEADING */}
   <div className="mb-6 text-center">
     <h2 className="text-2xl md:text-3xl font-bold text-pink-600">
-      Shop by Category
+     Flower Decoration Services
     </h2>
     <p className="text-gray-500 text-sm md:text-base mt-2">
       Explore decorations and floral arrangements for every occasion
@@ -541,10 +536,13 @@ const filteredProducts = products.filter(
   </Link>
 
 </div>
+    
+    
+    
+    </>
    
   );
 }
-
 
 
 
