@@ -21,6 +21,10 @@ import About from './Components/About'
 import Contact from './Components/Contact'
 import FAQ from './Components/FAQ'
 import DecorationPage from './Decoration/DecorationPage'
+import WeddingEventDecoration from './Decoration/Wedding&EventDecor'
+import SpecializedDecoration from './Decoration/SpecializedDecoration'
+import Visitourshop from './Decoration/Visitourshop'
+import Blog from './Decoration/Blog'
 
 
 function App() {
@@ -46,6 +50,10 @@ function App() {
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/faqs' element={<FAQ/>}/>
       <Route path='/decoration' element={<DecorationPage/>}/>
+      <Route path='/wedding-event-decor' element={<WeddingEventDecoration/>}/>
+      <Route path='/specialized-decoration' element={<SpecializedDecoration/>}/>
+      <Route path='/visit-our-shop' element={<Visitourshop/>}/>
+      <Route path='/blog' element={<Blog/>}/>
     </Routes>
     <Footer/>
     </BrowserRouter>

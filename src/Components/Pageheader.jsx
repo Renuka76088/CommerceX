@@ -35,6 +35,17 @@ const trendingItems = [
     "Valentines day gift",
   ];
 
+  const menuItems1 = [
+  { name: "Home", path: "/" },
+  { name: "About Us", path: "/about" },
+  { name: "Contact Us", path: "/contact" },
+  { name: "FAQ`s", path: "/faqs" },
+  { name: "Flowers", path: "/decoration" },
+  { name: "Wedding & Event Decor", path: "/wedding-event-decor" },
+  { name: "Specialized Decoration", path: "/specialized-decoration" },
+  { name: "Visit Our Store", path: "/visit-our-shop" },
+  { name: "Blog", path: "/blog" },
+];
   const options = [
     {
       label: "Become a Seller",
@@ -236,20 +247,44 @@ const menuItems = [
         {/* Bottom Nav */}
         <div className="border-t border-gray-200">
           <div className="max-w-[1400px] mx-auto px-6 py-3 flex justify-between text-[17px] font-medium text-gray-700">
-            <span>Flowers</span>
-            <span>Cakes</span>
-            <Link to='/decoration' className="text-pink-500">
-            <span>Decorations</span>
+           <Link to='/'>
+           <span>Home</span>
+           
+           </Link> 
+            <Link to='/about' >
+            <span>About Us</span>
+            </Link>
+            <Link to='/contact'>
+            <span>Contact Us</span>
             
             </Link>
-            <span>Gifts</span>
-            <span>Experience</span>
-            <span>Name Board</span>
-            <span>Wedding</span>
-            <span>Plants</span>
-            <span>Home Decor</span>
-            <span>Personalized</span>
+            <Link to='/faqs'>
+            <span>FAQs</span>
+            </Link>
+            <Link to='/decoration' > 
+            <span>Flowers</span>
+            </Link>
+            <Link to='/wedding-event-decor' >
+            
+            
+            <span> Wedding & Event Decor</span>
+            </Link>
+
+            <Link to='/specialized-decoration'>
+              <span>Specialized Decoration</span>
+            </Link>
+            
+          
+            <Link to='/visit-our-shop'>
+            
+            <span>Visit Our Store</span>
+            
+            </Link>
+            <Link to='/blog'>
             <span>Blog</span>
+            
+            </Link>
+           
           </div>
         </div>
 
@@ -293,79 +328,39 @@ const menuItems = [
   </div>
 
   {/* Menu List */}
-{/* Main Container: Isse h-full rakhein taaki height fix na ho */}
-<div className="h-full w-full bg-gray-50 overflow-y-auto">
-  
-  <div className="p-3 space-y-3">
-    {/* ===== CATEGORY LIST ===== */}
-    {[
-      "Flowers",
-      "Cakes",
-      "Decorations",
-      "Gifts",
-      "Experience",
-      "Name Board",
-      "Wedding",
-      "Plants",
-      "Home Decor",
-    ].map((item, index) => (
-      <div
-        key={index}
-        className="flex items-center justify-between bg-white rounded-xl shadow-sm px-4 py-4 cursor-pointer active:bg-gray-50 transition-all"
-      >
-        <div className="flex items-center gap-3">
-          <div className="w-5 h-5 border border-gray-300 rounded-sm grid grid-cols-2 gap-[2px] p-[2px]">
-            <div className="bg-gray-400"></div>
-            <div className="bg-gray-400"></div>
-            <div className="bg-gray-400"></div>
-            <div className="bg-gray-400"></div>
+  <div className="h-full w-full bg-gray-50 overflow-y-auto">
+    <div className="p-3 space-y-3">
+
+      {menuItems1.map((item, index) => (
+
+        <Link
+          to={item.path}
+          key={index}
+          onClick={() => setIsOpen(false)}   // ⭐ menu auto close
+          className="flex items-center justify-between bg-white rounded-xl shadow-sm px-4 py-4 cursor-pointer active:bg-gray-50 transition-all"
+        >
+
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 border border-gray-300 rounded-sm grid grid-cols-2 gap-[2px] p-[2px]">
+              <div className="bg-gray-400"></div>
+              <div className="bg-gray-400"></div>
+              <div className="bg-gray-400"></div>
+              <div className="bg-gray-400"></div>
+            </div>
+
+            <span className="text-[16px] font-medium text-gray-700">
+              {item.name}
+            </span>
           </div>
-          <span className="text-[16px] font-medium text-gray-700">{item}</span>
-        </div>
-        <span className="text-gray-400 text-lg">›</span>
-      </div>
-    ))}
 
-    {/* ===== ACTION SECTION (Bottom) ===== */}
-    {/* pb-40 ensures ki 'Call Us' screen ke kaafi upar tak scroll ho jaye */}
-    <div className="mt-8 border-t border-gray-200 pt-6 pb-40 space-y-3">
-      
-      {/* Register Vendor */}
+          <span className="text-gray-400 text-lg">›</span>
 
-      
-      <div className="flex justify-between items-center px-4 py-4 bg-white rounded-xl shadow-sm border border-orange-50">
-    <Link 
-  to='/vendor-form' 
-  className="flex justify-between items-center px-4 py-4 bg-white rounded-xl shadow-sm border border-orange-50 hover:bg-orange-50 transition-colors cursor-pointer"
->
-  {/* Left Side: Icon and Text */}
-  <span className="flex items-center gap-3 text-gray-700 font-semibold">
-    <span className="text-xl">👤</span> Register as Vendor
-  </span>
+        </Link>
 
-  {/* Right Side: Join Now Button */}
-  <span className="text-orange-500 text-sm font-bold bg-orange-50 ms-5 px-4 py-1 rounded-full border border-orange-100">
-    Join Now
-  </span>
-</Link>
-      </div>
-      
-
-      {/* Call Us */}
-      <div className="flex justify-between items-center px-4 py-4 bg-white rounded-xl shadow-sm border border-blue-50">
-        <span className="flex items-center gap-3 text-gray-700 font-semibold">
-          <span className="text-xl">📞</span> Call Us
-            <div className="text-[11px] text-gray-400 font-medium">9826992210</div>
-        </span>
-        <div className="text-right">
-          <div className="text-blue-600 text-[15px] font-bold">Connect</div>
-          <div className="text-[11px] text-gray-400 font-medium">10AM - 7:30PM</div>
-        </div>
-      </div>
+      ))}
 
     </div>
   </div>
-</div>
 </div>
 
 {/* Overlay */}

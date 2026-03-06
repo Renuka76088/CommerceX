@@ -1,211 +1,77 @@
 import React from "react";
 
+import Pastelblooms1 from "../assets/pastel-blooms-of-serenity.avif";
+import Roses1 from "../assets/Red Rose.avif";
+import PinkRoses1 from "../assets/whispers-of-affection-pink-roses-bouquet.avif";
+import ChicRose1 from "../assets/chic-rose-birthday-box-9764130fl-A.avif";
+import Enchanting1 from "../assets/enchanting-flower-for-mom-9779500fl-A.avif";
+import Blaze1 from "../assets/IMG_6743_0.avif";
+import Blush1 from "../assets/a-love-note-in-pink-roses-9716450fl-A_0.avif";
+import Bouquet1 from "../assets/a-bouquet-of-tender-moments-9717590fl-B_0.avif";
+
 const categories = [
-  {
-    name: "Personalised Gifts",
-    img: "https://images.unsplash.com/photo-1607082349566-187342175e2f",
-  },
-  {
-    name: "Flowers",
-    img: "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d",
-  },
-  {
-    name: "Gift Hampers",
-    img: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da",
-  },
-  {
-    name: "Cakes",
-    img: "https://images.unsplash.com/photo-1607478900766-efe13248b125",
-  },
-  {
-    name: "Anniversary Gifts",
-    img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9",
-  },
-  {
-    name: "Gifts for Bride",
-    img: "https://images.unsplash.com/photo-1542060748-10c28b62716f",
-  },
-  {
-    name: "Home Decor",
-    img: "https://images.unsplash.com/photo-1505691938895-1758d7feb511",
-  },
+  { name: "Roses", img: Roses1 },
+  { name: "Orchids", img: Enchanting1 },
+  { name: "Birthday Flowers", img: ChicRose1 },
+  { name: "Anniversary Flowers", img: PinkRoses1 },
+  { name: "Gerberas", img: Blush1 },
+  { name: "Mixed Bouquets", img: Pastelblooms1 },
 ];
 
 const products = [
-  {
-    title: "Personal Glow-Up Night Light",
-    price: "₹899",
-    img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
-  },
-  {
-    title: "Leafy Luxuries",
-    price: "₹3199",
-    img: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
-  },
-  {
-    title: "Blooming Love Personalised Gift Set",
-    price: "₹1799",
-    img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9",
-  },
-  {
-    title: "Romantic Rose Couple Mug",
-    price: "₹1149",
-    img: "https://images.unsplash.com/photo-1519681393784-d120267933ba",
-  },
-  {
-    title: "Luxury Wedding Hamper",
-    price: "₹2499",
-    img: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48",
-  },
-  {
-    title: "Couple Photo Frame",
-    price: "₹999",
-    img: "https://images.unsplash.com/photo-1505691938895-1758d7feb511",
-  },
-  {
-    title: "Romantic Rose Bouquet",
-    price: "₹1299",
-    img: "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d",
-  },
-  {
-    title: "Premium Flower Box",
-    price: "₹1899",
-    img: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
-  },
-  {
-    title: "Premium Flower Box",
-    price: "₹1899",
-    img: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
-  },
-  {
-    title: "Premium Flower Box",
-    price: "₹1899",
-    img: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
-  },
-  {
-    title: "Premium Flower Box",
-    price: "₹1899",
-    img: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
-  },
-  {
-    title: "Premium Flower Box",
-    price: "₹1899",
-    img: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
-  },
-  {
-    title: "Premium Flower Box",
-    price: "₹1899",
-    img: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
-  },
-  {
-    title: "Premium Flower Box",
-    price: "₹1899",
-    img: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
-  },
-  {
-    title: "Premium Flower Box",
-    price: "₹1899",
-    img: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
-  },
-  {
-    title: "Premium Flower Box",
-    price: "₹1899",
-    img: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
-  },
+  { title: "Pastel Blooms Of Serenity", price: "₹595", img: Pastelblooms1 },
+  { title: "10 Red Roses Bouquet", price: "₹595", img: Roses1 },
+  { title: "Whispers Of Affection Pink Roses", price: "₹695", img: PinkRoses1 },
+  { title: "Chic Rose Birthday Box", price: "₹795", img: ChicRose1 },
+  { title: "Enchanting Flower Basket", price: "₹899", img: Enchanting1 },
+  { title: "Blaze Red Velvet Roses", price: "₹799", img: Blaze1 },
+  { title: "Love Note Pink Roses", price: "₹699", img: Blush1 },
+  { title: "Tender Moments Bouquet", price: "₹899", img: Bouquet1 },
 ];
 
 const DecorationPage = () => {
   return (
-    <div className="flex bg-gray-100 min-h-screen">
+    <div className="bg-gray-100 min-h-screen">
 
-      {/* Sidebar */}
-<div className="w-72 bg-white shadow-lg p-5 sticky top-4 self-start max-h-[calc(100vh-40px)]  rounded-xl">
-        <h2 className="text-xl font-semibold mb-6">Filter</h2>
-
-        {/* Price */}
-        <div className="bg-gray-50 p-4 rounded-xl shadow-sm mb-6">
-
-          <div className="flex justify-between text-sm mb-3">
-            <span className="font-medium">Price</span>
-            <span className="text-gray-400">-</span>
-          </div>
-
-          <input type="range" className="w-full accent-pink-500" />
-
-          <div className="flex justify-between text-xs mt-2 text-gray-500">
-            <span>₹0</span>
-            <span>₹6500+</span>
-          </div>
-
-          <div className="flex gap-2 mt-4">
-            <input
-              type="text"
-              placeholder="₹ 0"
-              className="border border-gray-200 rounded-lg px-2 py-1 w-1/2 text-sm focus:ring-2 focus:ring-pink-300 outline-none"
-            />
-            <input
-              type="text"
-              placeholder="₹ 21000"
-              className="border border-gray-200 rounded-lg px-2 py-1 w-1/2 text-sm focus:ring-2 focus:ring-pink-300 outline-none"
-            />
-          </div>
-
-        </div>
-
-        {/* Filter Sections */}
-        {["Gift Type", "Flower Type", "Color", "Flavour"].map(
-          (item, i) => (
-            <div
-              key={i}
-              className="flex justify-between items-center bg-gray-50 hover:bg-pink-50 transition p-3 rounded-xl shadow-sm mb-3 cursor-pointer"
-            >
-              <span className="text-sm font-medium">{item}</span>
-              <span className="text-lg text-gray-400">+</span>
-            </div>
-          )
-        )}
-
-      </div>
-
-      {/* Right Content */}
-      <div className="flex-1 p-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
         {/* Heading */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
 
           <div>
-            <h1 className="text-3xl font-semibold">
-              Elegant Wedding Gifts
+            <h1 className="text-xl md:text-3xl font-semibold">
+              Beautiful Flower Bouquets
             </h1>
 
-            <div className="flex items-center gap-4 text-sm text-gray-500 mt-2">
-              <span>40 of 809 Gifts</span>
+            <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mt-2">
+              <span>40 Flower Products</span>
               <span className="text-green-600 font-semibold">⭐ 4.8</span>
               <span className="text-blue-600">281 Reviews</span>
             </div>
           </div>
 
-          <select className="border border-gray-200 rounded-xl px-4 py-2 text-sm shadow-sm focus:ring-2 focus:ring-pink-300 outline-none">
+          <select className="border border-gray-200 rounded-lg px-3 py-2 text-sm w-full md:w-auto">
             <option>Recommended</option>
             <option>Price Low to High</option>
             <option>Price High to Low</option>
           </select>
+
         </div>
 
         {/* Categories */}
-        <div className="flex gap-6 overflow-x-auto pb-5">
+        <div className="flex gap-4 overflow-x-auto pb-4">
 
           {categories.map((cat, i) => (
             <div
               key={i}
-              className="flex flex-col items-center min-w-[110px] cursor-pointer group"
+              className="flex flex-col items-center min-w-[90px] cursor-pointer group"
             >
               <img
                 src={cat.img}
-                className="w-20 h-10 rounded-xl object-cover shadow-md group-hover:scale-110 transition duration-300"
+                className="w-16 h-16 md:w-20 md:h-20 rounded-xl object-cover shadow-md group-hover:scale-110 transition"
               />
 
-              <span className="text-xs mt-2 text-center group-hover:text-pink-500 transition">
+              <span className="text-xs mt-2 text-center">
                 {cat.name}
               </span>
             </div>
@@ -213,53 +79,55 @@ const DecorationPage = () => {
 
         </div>
 
-        {/* Product Grid */}
-     <div className="grid grid-cols-4 gap-6 mt-4">
+        {/* Products */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
 
-  {products.map((product, i) => (
-    <div
-      key={i}
-      className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
-    >
+          {products.map((product, i) => (
+            <div
+              key={i}
+              className="bg-white rounded-xl shadow-sm hover:shadow-lg transition group"
+            >
 
-      <div className="overflow-hidden rounded-t-2xl">
-        <img
-          src={product.img}
-          className="w-full h-48 object-cover group-hover:scale-105 transition duration-500"
-        />
-      </div>
+              <div className="overflow-hidden rounded-t-xl">
+                <img
+                  src={product.img}
+                  className="w-full h-36 sm:h-40 md:h-44 lg:h-48 object-cover group-hover:scale-105 transition"
+                />
+              </div>
 
-      <div className="p-4">
+              <div className="p-3">
 
-        <h3 className="text-sm font-semibold text-gray-700 group-hover:text-pink-500 transition">
-          {product.title}
-        </h3>
+                <h3 className="text-sm font-semibold text-gray-700 line-clamp-2">
+                  {product.title}
+                </h3>
 
-        <div className="flex items-center justify-between mt-2">
+                <div className="flex items-center justify-between mt-2">
 
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-gray-900">
-              {product.price}
-            </span>
+                  <div className="flex flex-col">
+                    <span className="font-semibold text-gray-900 text-sm">
+                      {product.price}
+                    </span>
 
-            <span className="text-green-600 text-[10px] bg-green-100 px-2 py-[2px] rounded">
-              10% OFF
-            </span>
-          </div>
+                    <span className="text-green-600 text-[10px] bg-green-100 px-2 py-[1px] rounded w-fit">
+                      10% OFF
+                    </span>
+                  </div>
 
-          <button className="text-xs bg-pink-500 hover:bg-pink-600 text-white px-3 py-1 rounded-md transition">
-            Add
-          </button>
+                  <button className="text-xs bg-pink-500 hover:bg-pink-600 text-white px-3 py-1 rounded">
+                    Add
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+          ))}
 
         </div>
 
       </div>
-    </div>
-  ))}
 
-</div>
-
-      </div>
     </div>
   );
 };
