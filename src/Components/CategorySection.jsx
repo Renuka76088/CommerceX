@@ -16,39 +16,49 @@ export default function CategorySection() {
   ];
 
   return (
-    <section className="bg-[#e9e9e9] py-[70px] px-4 md:px-10 -mt-25">
-      <div className="max-w-[1400px] mx-auto">
+  <section className="bg-[#e9e9e9] py-[70px] px-4 md:px-10 -mt-25">
+  <div className="max-w-[1400px] mx-auto">
 
-        {/* Slider Container */}
-        <div className="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide">
+    {/* Heading */}
+    <div className="text-center mb-12">
+      <h6 className="text-[20px] md:text-[30px] font-semibold text-pink-600">
+        Trusted Gifts & Decorations by Giftlaya
+      </h6>
 
-          {categories.map((item, index) => (
-            <div
-              key={index}
-              className="min-w-[160px] md:min-w-[180px] snap-start flex-shrink-0 text-center group transition-all duration-500"
-            >
+      <p className="mt-2 text-[16px] md:text-[18px] text-[#666]">
+        1 Million + Happy Customers
+      </p>
+    </div>
 
-              {/* Circle Image */}
-              <div className="w-[160px] h-[160px] md:w-[180px] md:h-[180px] mx-auto rounded-full bg-[#f3f3f3] flex items-center justify-center overflow-hidden shadow-sm group-hover:shadow-xl transition-all duration-500">
+    {/* Slider Container */}
+    <div className="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide">
 
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              </div>
+      {categories.map((item, index) => (
+        <div
+          key={index}
+          className="min-w-[160px] md:min-w-[180px] snap-start flex-shrink-0 text-center group transition-all duration-500"
+        >
 
-              {/* Title */}
-              <h3 className="mt-5 text-[17px] md:text-[19px] font-normal text-[#1a2a3a] leading-[1.4] whitespace-pre-line group-hover:text-[#b1123f] transition duration-300">
-                {item.title}
-              </h3>
+          {/* Circle Image */}
+          <div className="w-[160px] h-[160px] md:w-[180px] md:h-[180px] mx-auto rounded-full bg-[#f3f3f3] flex items-center justify-center overflow-hidden shadow-sm group-hover:shadow-xl transition-all duration-500">
+            <img
+              src={item.img}
+              alt={item.title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+          </div>
 
-            </div>
-          ))}
+          {/* Title */}
+          <h3 className="mt-5 text-[17px] md:text-[19px] font-normal text-[#1a2a3a] leading-[1.4] whitespace-pre-line group-hover:text-[#b1123f] transition duration-300">
+            {item.title}
+          </h3>
 
         </div>
+      ))}
 
-      </div>
-    </section>
+    </div>
+
+  </div>
+</section>
   );
 }

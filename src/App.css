@@ -65,3 +65,7 @@
   focus:border-[#8c2b17]
   transition duration-200;
 }
+
+html, body {
+  overflow-x: hidden;
+}

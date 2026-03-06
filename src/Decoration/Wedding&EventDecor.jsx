@@ -152,9 +152,7 @@ const WeddingEventDecoration = () => {
                       {product.price}
                     </span>
 
-                    <span className="text-green-600 text-[10px] bg-green-100 px-2 py-[2px] rounded">
-                      Popular
-                    </span>
+                 
                   </div>
 
                   <button className="text-[11px] sm:text-xs bg-pink-500 hover:bg-pink-600 text-white px-3 py-1 rounded-md">
