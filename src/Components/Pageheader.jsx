@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, MapPin, User, ShoppingCart, Grid3X3, Menu,ChevronDown,  Store,
   Truck,
-  Building2, X,  Sparkles, Flame, ArrowUpRight,Info, Phone, MessageCircle, HelpCircle, ChevronRight} from "lucide-react";
+  Building2, X,  Sparkles, Flame, ArrowUpRight,Info, Phone, MessageCircle, HelpCircle, ChevronRight,
+  Wallet} from "lucide-react";
 import logo from '../assets/logo.png';
 import { FiPhoneCall } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -19,39 +20,166 @@ function Pageheader() {
    const theme = "#1f4d5a";
      // Close on outside click
 
-     const menuData = [
+   const menuData = [
   { name: 'Home', path: '/' },
+
+  {
+    name: 'Flower Category',
+    path: '/flower-category',
+    subcategories: [
+      {
+        title: 'Flower Bouquets',
+        items: [
+          'All Bouquets',
+          'Rose Bouquets',
+          'Carnation Bouquets',
+          'Gerbera Bouquets',
+          'Lily Bouquets',
+          'Orchid Bouquets',
+          'Mixed Flower Bouquets'
+        ]
+      },
+      {
+        title: 'Flower Boxes',
+        items: [
+          'Rose Flower Box',
+          'Mixed Flower Box',
+          'Luxury Flower Box',
+          'Heart Shape Flower Box'
+        ]
+      },
+      {
+        title: 'Flower Baskets',
+        items: [
+          'Rose Basket',
+          'Mixed Flower Basket',
+          'Carnation Basket',
+          'Orchid Basket'
+        ]
+      },
+      {
+        title: 'Flower Combos',
+        items: [
+          'Flowers With Cake',
+          'Flowers With Chocolate',
+          'Flowers With Teddy',
+          'Flowers With Gifts'
+        ]
+      },
+      {
+        title: 'Loose Flowers',
+        items: [
+          'Rose Petals',
+          'Marigold Flowers',
+          'Jasmine Flowers',
+          'Loose Mixed Flowers'
+        ]
+      },
+      {
+        title: 'Flower Garlands',
+        items: [
+          'Rose Garlands',
+          'Marigold Garlands',
+          'Jasmine Garlands',
+          'Wedding Garlands'
+        ]
+      }
+    ]
+  },
+
   {
     name: 'Flower Products',
-    path: '/decoration',
+    path: '/flower-products',
     subcategories: [
-      { title: 'Floral Types', items: ['All Flowers', 'Carnations', 'Combos', 'Gerberas', 'Lilies', 'Mixed Flowers', 'Orchids', 'Roses'] },
-      { title: 'By Occasions', items: ['Birthday', 'Anniversary', 'Valentine Day', 'Wedding'] },
-      { title: 'Roses by Colour', items: ['Pink', 'Red', 'White', 'Yellow'] },
-      { title: 'Send Flowers To', items: ['Ahmedabad', 'Bangalore', 'Chennai', 'Delhi NCR', 'Hyderabad', 'Kolkata', 'Mumbai', 'Pune'] }
+      {
+        title: 'Rose Bouquets',
+        items: [
+          '12 Red Rose Bouquet',
+          '25 Red Rose Bouquet',
+          '50 Red Rose Bouquet',
+          '100 Red Rose Bouquet'
+        ]
+      },
+      {
+        title: 'Mixed Bouquets',
+        items: [
+          'Mixed Flower Bouquet',
+          'Seasonal Flower Bouquet',
+          'Premium Mixed Bouquet'
+        ]
+      },
+      {
+        title: 'Lily Bouquets',
+        items: [
+          'White Lily Bouquet',
+          'Pink Lily Bouquet',
+          'Mixed Lily Bouquet'
+        ]
+      },
+      {
+        title: 'Flower Boxes',
+        items: [
+          'Red Rose Box',
+          'Luxury Flower Box',
+          'Heart Shape Flower Box'
+        ]
+      },
+      {
+        title: 'Flower Baskets',
+        items: [
+          'Rose Basket',
+          'Mixed Flower Basket',
+          'Premium Flower Basket'
+        ]
+      }
     ]
   },
+
   {
     name: 'Flower Decoration',
-    path: '/specialized-decoration',
+    path: '/flower-decoration',
     subcategories: [
-      { title: 'By Occasions', items: ['All Decorations', 'Anniversary', 'Baby Shower', 'Baby Welcome', 'Birthday', 'Christmas', 'Festival', 'Kid\'s Birthday', 'Proposal'] },
-      { title: 'Other Decorations', items: ['Cabana Decorations', 'Canopy Decorations', 'Car Boot Decorations', 'Ceremony Decorations', 'Flower Decorations', 'Office Decorations', 'Room Decorations', 'Stage Decorations', 'Terrace Decorations'] },
-      { title: 'City Wise', items: ['Ahmedabad', 'Bangalore', 'Chennai', 'Delhi NCR', 'Hyderabad', 'Gurugram', 'Kolkata', 'Mumbai', 'Pune'] }
+      {
+        title: 'Wedding Decoration',
+        items: [
+          'Haldi Decoration',
+          'Mehndi Decoration',
+          'Wedding Stage Decoration',
+          'Table Decoration',
+          'Mandap Decoration',
+          'varmala studio'
+        ]
+      },
+      {
+        title: 'Event Decoration',
+        items: [
+          'Sacred Flowers',
+          'Birthday Decoration',
+          'Anniversary Decoration',
+          'Entrance Decor',
+          'photo-booth',
+          'Baby Shower Decoration',
+          'Proposal Decoration'
+        ]
+      },
+      {
+        title: 'Car Decoration',
+        items: [
+          'Wedding Car Decoration',
+          'Bride Car Decoration',
+          'Rose Car Decoration',
+          'Ribbon Flower Car Decoration'
+        ]
+      }
     ]
   },
-  {
-    name: 'Wedding',
-    path: '/wedding-event-decor',
-    subcategories: [
-      { title: 'Wedding Services', items: ['Bride To be Decoration', 'Bride Welcome Decoration', 'Engagement Ring Platter', 'First Night Decorations', 'Haldi Decorations', 'Mehndi Decorations', 'Wedding Car Decorations'] }
-    ]
-  },
+
   { name: 'Gallery', path: '/gallery' },
   { name: 'About Us', path: '/about' },
   { name: 'Contact Us', path: '/contact' },
-  { name: 'FAQs', path: '/faqs' },
+  { name: 'FAQs', path: '/faqs' }
 ];
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -70,43 +198,167 @@ const trendingItems = [
     "Valentines day gift",
   ];
 
-const menuItems1 = [
-  { name: "Home", path: "/" },
-  { 
-    name: "Flower Products", 
-    path: "/decoration",
+     const menuItems1  = [
+  { name: 'Home', path: '/' },
+
+  {
+    name: 'Flower Category',
+    path: '/flower-category',
     subcategories: [
-      { title: 'Floral Types', items: ['All Flowers', 'Carnations', 'Combos', 'Gerberas', 'Lilies', 'Mixed Flowers', 'Orchids', 'Roses'] },
-      { title: 'By Occasions', items: ['Birthday', 'Anniversary', 'Valentine Day', 'Wedding'] },
-      { title: 'Roses by Colour', items: ['Pink', 'Red', 'White', 'Yellow'] },
-      { title: 'Send Flowers To', items: ['Ahmedabad', 'Bangalore', 'Chennai', 'Delhi NCR', 'Hyderabad', 'Kolkata', 'Mumbai', 'Pune'] }
+      {
+        title: 'Flower Bouquets',
+        items: [
+          'All Bouquets',
+          'Rose Bouquets',
+          'Carnation Bouquets',
+          'Gerbera Bouquets',
+          'Lily Bouquets',
+          'Orchid Bouquets',
+          'Mixed Flower Bouquets'
+        ]
+      },
+      {
+        title: 'Flower Boxes',
+        items: [
+          'Rose Flower Box',
+          'Mixed Flower Box',
+          'Luxury Flower Box',
+          'Heart Shape Flower Box'
+        ]
+      },
+      {
+        title: 'Flower Baskets',
+        items: [
+          'Rose Basket',
+          'Mixed Flower Basket',
+          'Carnation Basket',
+          'Orchid Basket'
+        ]
+      },
+      {
+        title: 'Flower Combos',
+        items: [
+          'Flowers With Cake',
+          'Flowers With Chocolate',
+          'Flowers With Teddy',
+          'Flowers With Gifts'
+        ]
+      },
+      {
+        title: 'Loose Flowers',
+        items: [
+          'Rose Petals',
+          'Marigold Flowers',
+          'Jasmine Flowers',
+          'Loose Mixed Flowers'
+        ]
+      },
+      {
+        title: 'Flower Garlands',
+        items: [
+          'Rose Garlands',
+          'Marigold Garlands',
+          'Jasmine Garlands',
+          'Wedding Garlands'
+        ]
+      }
     ]
   },
-  { 
-    name: "Flower Decoration", 
-    path: "/specialized-decoration",
+
+  {
+    name: 'Flower Products',
+    path: '/flower-products',
     subcategories: [
-      { title: 'By Occasions', items: ['All Decorations', 'Anniversary', 'Baby Shower', 'Baby Welcome', 'Birthday', 'Christmas', 'Festival', 'Kid\'s Birthday', 'Proposal'] },
-      { title: 'Other Decorations', items: ['Cabana Decorations', 'Canopy Decorations', 'Car Boot Decorations', 'Ceremony Decorations', 'Flower Decorations', 'Office Decorations', 'Room Decorations', 'Stage Decorations', 'Terrace Decorations'] },
-      { title: 'City Wise', items: ['Ahmedabad', 'Bangalore', 'Chennai', 'Delhi NCR', 'Hyderabad', 'Gurugram', 'Kolkata', 'Mumbai', 'Pune'] }
+      {
+        title: 'Rose Bouquets',
+        items: [
+          '12 Red Rose Bouquet',
+          '25 Red Rose Bouquet',
+          '50 Red Rose Bouquet',
+          '100 Red Rose Bouquet'
+        ]
+      },
+      {
+        title: 'Mixed Bouquets',
+        items: [
+          'Mixed Flower Bouquet',
+          'Seasonal Flower Bouquet',
+          'Premium Mixed Bouquet'
+        ]
+      },
+      {
+        title: 'Lily Bouquets',
+        items: [
+          'White Lily Bouquet',
+          'Pink Lily Bouquet',
+          'Mixed Lily Bouquet'
+        ]
+      },
+      {
+        title: 'Flower Boxes',
+        items: [
+          'Red Rose Box',
+          'Luxury Flower Box',
+          'Heart Shape Flower Box'
+        ]
+      },
+      {
+        title: 'Flower Baskets',
+        items: [
+          'Rose Basket',
+          'Mixed Flower Basket',
+          'Premium Flower Basket'
+        ]
+      }
     ]
   },
-  { 
-    name: "Wedding", 
-    path: "/wedding-event-decor",
+
+  {
+    name: 'Flower Decoration',
+    path: '/flower-decoration',
     subcategories: [
-      { title: 'Wedding Services', items: ['Bride To be Decoration', 'Bride Welcome Decoration', 'Engagement Ring Platter', 'First Night Decorations', 'Haldi Decorations', 'Mehndi Decorations', 'Wedding Car Decorations'] }
+      {
+        title: 'Wedding Decoration',
+        items: [
+          'Haldi Decoration',
+          'Mehndi Decoration',
+          'Wedding Stage Decoration',
+          'Table Decoration',
+          'Mandap Decoration',
+          'varmala studio'
+        ]
+      },
+      {
+        title: 'Event Decoration',
+        items: [
+          'Sacred Flowers',
+          'Birthday Decoration',
+          'Anniversary Decoration',
+          'Entrance Decor',
+          'photo-booth',
+          'Baby Shower Decoration',
+          'Proposal Decoration'
+        ]
+      },
+      {
+        title: 'Car Decoration',
+        items: [
+          'Wedding Car Decoration',
+          'Bride Car Decoration',
+          'Rose Car Decoration',
+          'Ribbon Flower Car Decoration'
+        ]
+      }
     ]
   },
-  { name: "Gallery", path: "/gallery" },
-  { name: "About Us", path: "/about" },
-  { name: "Contact Us", path: "/contact" },
-  { name: "FAQ's", path: "/faqs" },
-  { name: "Visit Our Store", path: "/visit-our-shop" },
-  { name: "Blog", path: "/blog" },
-  { name: "Shop More", path: "/shop-more" },
-  
+
+  { name: 'Gallery', path: '/gallery' },
+  { name: 'About Us', path: '/about' },
+  { name: 'Contact Us', path: '/contact' },
+  { name: 'FAQs', path: '/faqs' }
 ];
+
+
   const options = [
     {
       label: "Become a Seller",
@@ -162,7 +414,7 @@ const menuItems = [
                 Prakash Florist              </p>
             </div>
 
-            <div className="flex items-center gap-2 cursor-pointer">
+            {/* <div className="flex items-center gap-2 cursor-pointer">
               <MapPin size={22} className="text-gray-600" />
               <div>
                 <p className="text-sm text-gray-600 font-medium">
@@ -172,7 +424,7 @@ const menuItems = [
                   Not Selected
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Search */}
@@ -195,7 +447,7 @@ const menuItems = [
           <div className="relative inline-block z-[9999]" ref={dropdownRef}>
       
       {/* BUTTON */}
-      <button
+      {/* <button
         onClick={() => setOpen(!open)}
         className="flex items-center gap-2 border px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 shadow-sm hover:shadow-md"
         style={{
@@ -217,7 +469,7 @@ const menuItems = [
             open ? "rotate-180" : ""
           }`}
         />
-      </button>
+      </button> */}
 
       {/* DROPDOWN */}
      {open && (
@@ -285,6 +537,28 @@ const menuItems = [
   />
   <span className="font-medium">Shop More</span>
 </Link>
+  
+
+      {/* Dropdown Menu - Opens Downwards */}
+    
+    </div>
+           <div 
+      className="relative inline-block py-2 z-50"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      {/* Trigger Button */}
+     <Link
+  to="/shop-more"
+  className="flex flex-col items-center text-sm transition-colors duration-200 cursor-pointer text-gray-600 hover:text-blue-600"
+>
+  <Wallet
+    size={22}
+    className="transition-transform duration-300 hover:rotate-90"
+  />
+  <span className="font-medium">Book Now</span>
+</Link>
+  
 
       {/* Dropdown Menu - Opens Downwards */}
     

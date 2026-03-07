@@ -7,6 +7,7 @@ import Mastercard from '../assets/mastercard.png'
 import Upi from '../assets/Upi.png'
 import play from '../assets/play-store.svg'
 import app from '../assets/app-store.svg'
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -62,110 +63,148 @@ function Footer() {
 
         {/* ================= MAIN FOOTER ================= */}
       
- <div className="bg-[#f3f4f6] pt-12 pb-6">
+<div className="bg-[#f3f4f6] pt-14 pb-8">
 
-  {/* Main Card */}
-  <div className="max-w-[1200px] mx-auto bg-white rounded-2xl shadow-sm px-6 md:px-10 py-10">
+  <div className="max-w-[1200px] mx-auto bg-white rounded-2xl shadow-sm px-6 md:px-12 py-12">
 
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-16">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
 
       {/* Logo Section */}
       <div className="text-center md:text-left">
-        <h1 className="text-4xl font-bold text-[#8B2E1E] leading-none flex items-center gap-2">
-         <img
-           src={logo}
-           alt="Logo"
-           className="w-20 h-20 object-contain"
-         />
-       </h1>
-                     <p className="text-xs text-gray-500 mt-1">
-                       Prakash Florist              </p>
 
-        <p className="text-sm text-gray-700 mt-4">
-          © 2026 Prakash Florist
+        <img
+          src={logo}
+          alt="Prakash Florist"
+          className="w-20 h-20 mx-auto md:mx-0"
+        />
+
+        <p className="text-sm text-gray-700 mt-3 font-medium">
+          Prakash Florist
+        </p>
+
+        <p className="text-sm text-gray-600 mt-2">
+          Since 1970
         </p>
 
         {/* Social Icons */}
-        <div className="flex justify-center md:justify-start gap-3 mt-4 text-gray-600">
-          {[ FaFacebookF, FaInstagram].map((Icon, i) => (
-            <div
+        <div className="flex justify-center md:justify-start gap-3 mt-5">
+          {[FaFacebookF, FaInstagram].map((Icon, i) => (
+            <a
               key={i}
-              className="w-9 h-9 flex items-center justify-center bg-gray-200 rounded-md hover:bg-gray-300 transition"
+              href="#"
+              className="w-9 h-9 flex items-center justify-center bg-gray-200 rounded-md hover:bg-pink-500 hover:text-white transition"
             >
-              <Icon size={15} />
-            </div>
+              <Icon size={14} />
+            </a>
           ))}
         </div>
 
-        {/* Payments */}
-        <div className="mt-8 font-semibold text-[15px] text-center md:text-left">
-          100% Secure Payments
-        </div>
-
-    <div className="flex justify-center md:justify-start gap-3 mt-4 flex-nowrap">
-  <img src={Rupay} alt="Rupay" className="h-7 border rounded-md px-2 py-1 bg-white" />
-  <img src={Visa} alt="Visa" className="h-7 border rounded-md px-2 py-1 bg-white" />
-  <img src={Mastercard} alt="Mastercard" className="h-7 border rounded-md px-2 py-1 bg-white" />
-  <img src={Upi} alt="UPI" className="h-7 border rounded-md px-2 py-1 bg-white" />
-</div>
       </div>
 
-      {/* 🔥 Mobile me 2 column layout */}
-      <div className="grid grid-cols-2 gap-8 md:contents">
 
-        {/* Policy Info */}
-        <div>
-          <h3 className="text-lg font-semibold mb-4 md:mb-6">Policy Info</h3>
-          <ul className="space-y-2 md:space-y-5 text-[14px] md:text-[15px] text-gray-800">
-            <li>Terms & Conditions</li>
-            <li>Privacy Policy</li>
-            <li>Disclaimer</li>
-            <li>Shipping Policy</li>
-            <li>Cancellation Policy</li>
-          </ul>
-        </div>
+      {/* Policy Links */}
+      <div>
 
-        {/* About Company */}
-        <div>
-          <h3 className="text-lg font-semibold mb-4 md:mb-6">About Company</h3>
-          <ul className="space-y-2 md:space-y-5 text-[14px] md:text-[15px] text-gray-800">
-            <li>About Us</li>
-            <li>Latest Blogs</li>
-            <li>Contact Us</li>
-            <li>Vendor</li>
-            <li>Sitemap</li>
-          </ul>
-        </div>
-
-      </div>
-
-      {/* Download App */}
-      <div className="mt-10 md:mt-0">
-        <h3 className="text-lg font-semibold mb-6 text-center md:text-left">
-          Download App
+        <h3 className="text-lg font-semibold mb-5">
+          Policy Info
         </h3>
 
-        <div className="space-y-4 md:space-y-6">
-          <button className="w-full bg-gray-100 rounded-2xl py-4 flex items-center justify-center gap-3 shadow-sm hover:shadow-md transition">
-            <img src={play} alt="" className="h-6" />
-            <span className="text-[16px] font-medium">Play Store</span>
-          </button>
+        <ul className="space-y-3 text-[14px] text-gray-700">
 
-          <button className="w-full bg-gray-100 rounded-2xl py-4 flex items-center justify-center gap-3 shadow-sm hover:shadow-md transition">
-            <img src={app } alt="" className="h-6" />
-            <span className="text-[16px] font-medium">App Store</span>
-          </button>
+          <li><Link to="/terms-and-conditions" className="hover:text-pink-600">Terms & Conditions</Link></li>
+          <li><Link to="/privacy-policy" className="hover:text-pink-600">Privacy Policy</Link></li>
+          <li><Link to="/disclaimer" className="hover:text-pink-600">Disclaimer</Link></li>
+          <li><Link to="/shipping-policy" className="hover:text-pink-600">Shipping Policy</Link></li>
+          <li><Link to="/cancellation-policy" className="hover:text-pink-600">Cancellation Policy</Link></li>
+
+        </ul>
+
+      </div>
+
+
+      {/* Company Links */}
+      <div>
+
+        <h3 className="text-lg font-semibold mb-5">
+          Company
+        </h3>
+
+        <ul className="space-y-3 text-[14px] text-gray-700">
+
+          <li><Link to="/about" className="hover:text-pink-600">About Us</Link></li>
+          <li><Link to="/blog" className="hover:text-pink-600">Latest Blogs</Link></li>
+          <li><Link to="/contact" className="hover:text-pink-600">Contact Us</Link></li>
+          <li><Link to="/gallery" className="hover:text-pink-600">Gallery</Link></li>
+          <li><Link to="/faqs" className="hover:text-pink-600">FAQs</Link></li>
+
+        </ul>
+
+      </div>
+
+
+      {/* Contact Section */}
+      <div>
+
+        <h3 className="text-lg font-semibold mb-5">
+          Contact
+        </h3>
+
+        <ul className="space-y-3 text-[14px] text-gray-700">
+
+          <li>
+            📍 Vijay Nagar, Indore
+          </li>
+
+          <li>
+            📞 +91 9826992210
+          </li>
+
+          <li>
+            ✉ support@prakashflorist.com
+          </li>
+
+          <li>
+            🕒 10 AM – 7:30 PM
+          </li>
+
+        </ul>
+
+        {/* Payments */}
+        <p className="mt-6 font-semibold text-[14px]">
+          100% Secure Payments
+        </p>
+
+        <div className="flex gap-2 mt-3 flex-wrap">
+          <img src={Rupay} className="h-7 border rounded-md px-2 py-1 bg-white"/>
+          <img src={Visa} className="h-7 border rounded-md px-2 py-1 bg-white"/>
+          <img src={Mastercard} className="h-7 border rounded-md px-2 py-1 bg-white"/>
+          <img src={Upi} className="h-7 border rounded-md px-2 py-1 bg-white"/>
         </div>
+
       </div>
 
     </div>
+
   </div>
 
+
   {/* Bottom Section */}
-  <div className="text-center text-sm text-gray-600 mt-6 leading-6 px-4">
-    Prakash Florist | Registered Office: A25 RAJAT JAYANTI COMPLEX SCH. NO.54, Vijay Nagar, Indore, <br />
-    Telephone No: +91 9826992210 | Support : support@prakashflorist.com [ 10 AM to 7:30 PM ] <br />
-    © 2015-2026 Prakash Florist All rights reserved.
+
+  <div className="text-center text-sm text-gray-600 mt-8 leading-6 px-4">
+
+    <p>
+      Prakash Florist | Registered Office: A25 Rajat Jayanti Complex,
+      Scheme No.54, Vijay Nagar, Indore
+    </p>
+
+    <p className="mt-1">
+      Telephone: +91 9826992210
+    </p>
+
+    <p className="mt-2">
+      © 2015-2026 Prakash Florist. All Rights Reserved.
+    </p>
+
   </div>
 
 </div>

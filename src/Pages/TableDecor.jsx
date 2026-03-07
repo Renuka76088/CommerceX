@@ -1,0 +1,133 @@
+import React from "react";
+
+import Tabledecore1 from "../assets/Tabledecore (1).png";
+import Tabledecore2  from "../assets/Tabledecore (2).png";
+import Tabledecore3  from "../assets/Tabledecore (3).png";
+import Tabledecore4  from "../assets/Tabledecore (4).png";
+import Tabledecore5 from "../assets/Tabledecore (5).png";
+import Tabledecore6 from "../assets/Tabledecore (6).png";
+
+
+const categories = [
+  { name: "Tissue/Artificial Flower Vermala", img: Tabledecore1 },
+  { name: "Mixed Material Vermala", img: Tabledecore2 },
+  { name: "Heavy TraditionalVermala ", img:Tabledecore4 },
+  { name: "Rakhi/Thread Style Vermala ", img: Tabledecore5 },
+  { name: "Thematic/Customized Vermala", img: Tabledecore3 },
+  { name: "Mixed Bouquets", img: Tabledecore6 },
+];
+
+const products = [
+  { title: "Tissue/Artificial Flower Vermala", price: "₹595", img:Tabledecore1 },
+  { title: "Mixed Material Vermala", price: "₹595", img: Tabledecore2 },
+  { title: "Heavy Traditional Maharashtrian/Kannada/Haryanvi Style", price: "₹695", img: Tabledecore4},
+  { title: "Rakhi/Thread Style Vermala ", price: "₹795", img: Tabledecore3 },
+  { title: "Thematic/Customized Vermala", price: "₹899", img: Tabledecore5 },
+  { title: "Blaze Red Velvet Roses", price: "₹799", img: Tabledecore6 },
+  
+];
+
+const TableDecor = () => {
+  return (
+    <div className="bg-gray-100 min-h-screen">
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        {/* Heading */}
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
+
+          <div>
+            <h1 className="text-xl md:text-3xl font-semibold">
+              Beautiful Flower Table Décor & Centerpieces
+            </h1>
+
+            <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mt-2">
+              <span>40 Flower Products</span>
+              <span className="text-green-600 font-semibold">⭐ 4.8</span>
+              <span className="text-blue-600">281 Reviews</span>
+            </div>
+          </div>
+
+          <select className="border border-gray-200 rounded-lg px-3 py-2 text-sm w-full md:w-auto">
+            <option>Recommended</option>
+            <option>Price Low to High</option>
+            <option>Price High to Low</option>
+          </select>
+
+        </div>
+
+        {/* Categories */}
+        <div className="flex gap-4 overflow-x-auto pb-4">
+
+          {categories.map((cat, i) => (
+            <div
+              key={i}
+              className="flex flex-col items-center min-w-[90px] cursor-pointer group"
+            >
+              <img
+                src={cat.img}
+                className="w-16 h-16 md:w-20 md:h-20 rounded-xl object-cover shadow-md group-hover:scale-110 transition"
+              />
+
+              <span className="text-xs mt-2 text-center">
+                {cat.name}
+              </span>
+            </div>
+          ))}
+
+        </div>
+
+        {/* Products */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+
+          {products.map((product, i) => (
+            <div
+              key={i}
+              className="bg-white rounded-xl shadow-sm hover:shadow-lg transition group"
+            >
+
+              <div className="overflow-hidden rounded-t-xl">
+                <img
+                  src={product.img}
+                  className="w-full h-36 sm:h-40 md:h-44 lg:h-48 object-cover group-hover:scale-105 transition"
+                />
+              </div>
+
+              <div className="p-3">
+
+                <h3 className="text-sm font-semibold text-gray-700 line-clamp-2">
+                  {product.title}
+                </h3>
+
+                <div className="flex items-center justify-between mt-2">
+
+                  <div className="flex flex-col">
+                    <span className="font-semibold text-gray-900 text-sm">
+                      {product.price}
+                    </span>
+
+                    <span className="text-green-600 text-[10px] bg-green-100 px-2 py-[1px] rounded w-fit">
+                      10% OFF
+                    </span>
+                  </div>
+
+                  <button className="text-xs bg-pink-500 hover:bg-pink-600 text-white px-3 py-1 rounded">
+                    Add
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+          ))}
+
+        </div>
+
+      </div>
+
+    </div>
+  );
+};
+
+export default TableDecor;
