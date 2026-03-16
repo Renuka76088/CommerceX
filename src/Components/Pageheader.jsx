@@ -93,6 +93,7 @@ function Pageheader() {
     subcategories: [
       {
         title: 'Rose Bouquets',
+        path:'/rose-bouquets',
         items: [
           '12 Red Rose Bouquet',
           '25 Red Rose Bouquet',
@@ -566,59 +567,57 @@ const menuItems = [
           </div>
         </div>
 
-        {/* Bottom Nav */}
-   <div className="border-t border-gray-200 bg-white sticky top-0 z-50">
+ 
+     <div className="border-t border-gray-200 bg-white sticky top-0 z-50">
   <div className="max-w-[1400px] mx-auto px-6 flex justify-between items-center h-16">
-
     {menuData.map((menu, index) => (
       <div key={index} className="relative group h-full flex items-center">
-
         {/* Main Link */}
         <Link
           to={menu.path}
           className="text-[17px] font-semibold text-gray-700 hover:text-rose-600 transition-colors duration-200 flex items-center gap-1 py-4"
         >
           {menu.name}
-
           {menu.subcategories && (
-            <span className="text-[12px] group-hover:rotate-180 transition-transform duration-300">
-              ▼
-            </span>
+            <span className="text-[12px] group-hover:rotate-180 transition-transform duration-300">▼</span>
           )}
         </Link>
 
         {/* Dropdown */}
         {menu.subcategories && (
           <div className="absolute top-full left-0 hidden group-hover:flex bg-white border border-gray-100 shadow-xl p-6 gap-8 rounded-b-xl animate-in fade-in slide-in-from-top-2 duration-300 w-max">
+            {menu.subcategories.map((sub, idx) => {
+              // Yahan hum path decide kar rahe hain: 
+              // Agar sub.path exists hai toh wo use karo, nahi toh title se banao
+              const subPath = sub.path || `${menu.path}/${sub.title.toLowerCase().replace(/ /g, "-")}`;
+              
+              return (
+                <div key={idx} className="flex flex-col">
+                  {/* --- UPDATED TITLE TO LINK --- */}
+                  <Link 
+                    to={subPath}
+                    className="font-semibold text-gray-900 text-[15px] mb-3 border-b border-rose-100 pb-1 hover:text-rose-600 hover:border-rose-500 transition-colors"
+                  >
+                    {sub.title}
+                  </Link>
 
-            {menu.subcategories.map((sub, idx) => (
-              <div key={idx} className="flex flex-col">
-
-                <h4 className="font-semibold text-gray-900 text-[15px] mb-3 border-b border-rose-100 pb-1">
-                  {sub.title}
-                </h4>
-
-                <ul className="space-y-2">
-                  {sub.items.map((item, i) => (
-                    <li key={i}>
-                      <Link
-                        to={`${menu.path}/${item
-                          .toLowerCase()
-                          .replace(/ /g, "-")}`}
-                        className="text-gray-500 text-[14px] hover:text-rose-500 hover:translate-x-1 transition-all inline-block"
-                      >
-                        {item}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-
-              </div>
-            ))}
-
+                  <ul className="space-y-2">
+                    {sub.items.map((item, i) => (
+                      <li key={i}>
+                        <Link
+                          to={`${subPath}/${item.toLowerCase().replace(/ /g, "-")}`}
+                          className="text-gray-500 text-[14px] hover:text-rose-500 hover:translate-x-1 transition-all inline-block"
+                        >
+                          {item}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
           </div>
         )}
-
       </div>
     ))}
 

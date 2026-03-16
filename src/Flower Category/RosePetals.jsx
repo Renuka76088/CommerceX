@@ -1,29 +1,10 @@
 import React from "react";
 
-import Flower1 from "../assets/Rose (1).png";
-import Flower2  from "../assets/Rose (2).png";
-import Flower3  from "../assets/Rose (3).png";
-import Flower4  from "../assets/Rose (4).png";
-import Flower5 from "../assets/Rose (5).png";
-import Flower6 from "../assets/Rose (6).png";
+import Flower1 from "../assets/Rose Petals.png";
 
-
-const categories = [
-  { name: "Roses", img: Flower1 },
-  { name: "Orchids", img: Flower2 },
-  { name: "Birthday Flowers", img:Flower3 },
-  { name: "Anniversary Flowers", img: Flower4 },
-  { name: "Gerberas", img: Flower5 },
-  { name: "Mixed Bouquets", img: Flower6 },
-];
 
 const products = [
-  { title: "Pastel Blooms Of Serenity", price: "₹595", img:Flower1 },
-  { title: "10 Red Roses Bouquet", price: "₹595", img: Flower2 },
-  { title: "Whispers Of Affection Pink Roses", price: "₹695", img: Flower3},
-  { title: "Chic Rose Birthday Box", price: "₹795", img: Flower4 },
-  { title: "Enchanting Flower Basket", price: "₹899", img: Flower5 },
-  { title: "Blaze Red Velvet Roses", price: "₹799", img: Flower6 },
+  { title: " Rose Petals", price: "₹595", img:Flower1 },
   
 ];
 
@@ -38,7 +19,7 @@ const RosePetals = () => {
 
           <div>
             <h1 className="text-xl md:text-3xl font-semibold">
-              Beautiful Flower Bouquets
+             Rose Petals
             </h1>
 
             <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mt-2">
@@ -56,26 +37,7 @@ const RosePetals = () => {
 
         </div>
 
-        {/* Categories */}
-        <div className="flex gap-4 overflow-x-auto pb-4">
-
-          {categories.map((cat, i) => (
-            <div
-              key={i}
-              className="flex flex-col items-center min-w-[90px] cursor-pointer group"
-            >
-              <img
-                src={cat.img}
-                className="w-16 h-16 md:w-20 md:h-20 rounded-xl object-cover shadow-md group-hover:scale-110 transition"
-              />
-
-              <span className="text-xs mt-2 text-center">
-                {cat.name}
-              </span>
-            </div>
-          ))}
-
-        </div>
+  
 
         {/* Products */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">

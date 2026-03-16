@@ -1,33 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 
-import Flower1 from "../assets/Rose (1).png";
-import Flower2  from "../assets/Rose (2).png";
-import Flower3  from "../assets/Rose (3).png";
-import Flower4  from "../assets/Rose (4).png";
-import Flower5 from "../assets/Rose (5).png";
-import Flower6 from "../assets/Rose (6).png";
-
+import Flower1 from "../assets/flower-7.webp";
+import Flower2 from "../assets/Rose 25.jpg";
+import Flower3 from "../assets/Rose50 (1).png";
+import Flower4 from "../assets/Rose100.png";
 
 const categories = [
-  { name: "Roses", img: Flower1 },
-  { name: "Orchids", img: Flower2 },
-  { name: "Birthday Flowers", img:Flower3 },
-  { name: "Anniversary Flowers", img: Flower4 },
-  { name: "Gerberas", img: Flower5 },
-  { name: "Mixed Bouquets", img: Flower6 },
+  { name: "12 Red Rose Bouquet", img: Flower1 },
+  { name: "25 Red Rose Bouquet", img: Flower2 },
+  { name: "50 Red Rose Bouquet", img: Flower3 },
+  { name: "100 Red Rose Bouquet", img: Flower4 },
 ];
 
 const products = [
-  { title: "Pastel Blooms Of Serenity", price: "₹595", img:Flower1 },
-  { title: "10 Red Roses Bouquet", price: "₹595", img: Flower2 },
-  { title: "Whispers Of Affection Pink Roses", price: "₹695", img: Flower3},
-  { title: "Chic Rose Birthday Box", price: "₹795", img: Flower4 },
-  { title: "Enchanting Flower Basket", price: "₹899", img: Flower5 },
-  { title: "Blaze Red Velvet Roses", price: "₹799", img: Flower6 },
-  
+
+  // 12 Red Rose Bouquet
+  { title: "12 Red Roses Classic Bouquet", price: "₹595", img: Flower1, category: "12 Red Rose Bouquet" },
+
+  // 25 Red Rose Bouquet
+  { title: "25 Red Roses Premium Bouquet", price: "₹895", img: Flower2, category: "25 Red Rose Bouquet" },
+
+  // 50 Red Rose Bouquet
+  { title: "50 Red Roses Grand Bouquet", price: "₹1495", img: Flower3, category: "50 Red Rose Bouquet" },
+
+  // 100 Red Rose Bouquet
+  { title: "100 Red Roses Luxury Bouquet", price: "₹2495", img: Flower4, category: "100 Red Rose Bouquet" },
+
 ];
 
 const RoseBouquets = () => {
+
+  const [selectedCategory, setSelectedCategory] = useState("12 Red Rose Bouquet");
+
+  const filteredProducts = products.filter(
+    (item) => item.category === selectedCategory
+  );
+
   return (
     <div className="bg-gray-100 min-h-screen">
 
@@ -38,7 +46,7 @@ const RoseBouquets = () => {
 
           <div>
             <h1 className="text-xl md:text-3xl font-semibold">
-              Beautiful Flower Bouquets
+              Beautiful Rose Bouquets
             </h1>
 
             <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mt-2">
@@ -62,6 +70,7 @@ const RoseBouquets = () => {
           {categories.map((cat, i) => (
             <div
               key={i}
+              onClick={() => setSelectedCategory(cat.name)}
               className="flex flex-col items-center min-w-[90px] cursor-pointer group"
             >
               <img
@@ -80,7 +89,7 @@ const RoseBouquets = () => {
         {/* Products */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
 
-          {products.map((product, i) => (
+          {filteredProducts.map((product, i) => (
             <div
               key={i}
               className="bg-white rounded-xl shadow-sm hover:shadow-lg transition group"

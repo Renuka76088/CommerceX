@@ -1,34 +1,48 @@
+import React, { useState } from "react";
 
-import React from "react";
-
-import Flower1 from "../assets/Rose (1).png";
-import Flower2  from "../assets/Rose (2).png";
-import Flower3  from "../assets/Rose (3).png";
-import Flower4  from "../assets/Rose (4).png";
-import Flower5 from "../assets/Rose (5).png";
-import Flower6 from "../assets/Rose (6).png";
-
+import Flower1 from "../assets/White Lily (1).jpg";
+import Flower2 from "../assets/Pink Lily.webp";
+import Flower3 from "../assets/Mixed Lily.jpg";
 
 const categories = [
-  { name: "Roses", img: Flower1 },
-  { name: "Orchids", img: Flower2 },
-  { name: "Birthday Flowers", img:Flower3 },
-  { name: "Anniversary Flowers", img: Flower4 },
-  { name: "Gerberas", img: Flower5 },
-  { name: "Mixed Bouquets", img: Flower6 },
+  { name: "All", img: Flower1 },
+  { name: "White Lily Bouquet", img: Flower1 },
+  { name: "Pink Lily Bouquet", img: Flower2 },
+  { name: "Mixed Lily Bouquet", img: Flower3 },
 ];
 
 const products = [
-  { title: "Pastel Blooms Of Serenity", price: "₹595", img:Flower1 },
-  { title: "10 Red Roses Bouquet", price: "₹595", img: Flower2 },
-  { title: "Whispers Of Affection Pink Roses", price: "₹695", img: Flower3},
-  { title: "Chic Rose Birthday Box", price: "₹795", img: Flower4 },
-  { title: "Enchanting Flower Basket", price: "₹899", img: Flower5 },
-  { title: "Blaze Red Velvet Roses", price: "₹799", img: Flower6 },
-  
+  {
+    title: "Pastel Blooms Of Serenity",
+    price: "₹595",
+    img: Flower1,
+    category: "White Lily Bouquet",
+  },
+
+  {
+    title: "Pink Lily Special Bouquet",
+    price: "₹595",
+    img: Flower2,
+    category: "Pink Lily Bouquet",
+  },
+
+  {
+    title: "Whispers Of Affection Pink Roses",
+    price: "₹695",
+    img: Flower3,
+    category: "Mixed Lily Bouquet",
+  },
 ];
 
 const LilyBouquets = () => {
+
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const filteredProducts =
+    selectedCategory === "All"
+      ? products
+      : products.filter((p) => p.category === selectedCategory);
+
   return (
     <div className="bg-gray-100 min-h-screen">
 
@@ -43,7 +57,7 @@ const LilyBouquets = () => {
             </h1>
 
             <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mt-2">
-              <span>40 Flower Products</span>
+              <span>{filteredProducts.length} Flower Products</span>
               <span className="text-green-600 font-semibold">⭐ 4.8</span>
               <span className="text-blue-600">281 Reviews</span>
             </div>
@@ -63,16 +77,24 @@ const LilyBouquets = () => {
           {categories.map((cat, i) => (
             <div
               key={i}
+              onClick={() => setSelectedCategory(cat.name)}
               className="flex flex-col items-center min-w-[90px] cursor-pointer group"
             >
+
               <img
                 src={cat.img}
-                className="w-16 h-16 md:w-20 md:h-20 rounded-xl object-cover shadow-md group-hover:scale-110 transition"
+                className={`w-16 h-16 md:w-20 md:h-20 rounded-xl object-cover shadow-md transition
+                ${
+                  selectedCategory === cat.name
+                    ? "ring-2 ring-pink-500 scale-105"
+                    : "group-hover:scale-110"
+                }`}
               />
 
               <span className="text-xs mt-2 text-center">
                 {cat.name}
               </span>
+
             </div>
           ))}
 
@@ -81,7 +103,7 @@ const LilyBouquets = () => {
         {/* Products */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
 
-          {products.map((product, i) => (
+          {filteredProducts.map((product, i) => (
             <div
               key={i}
               className="bg-white rounded-xl shadow-sm hover:shadow-lg transition group"
