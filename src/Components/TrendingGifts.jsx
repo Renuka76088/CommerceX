@@ -7,8 +7,12 @@ import flower5 from "../assets/flower-5.webp";
 import flower6 from "../assets/flower-6.webp";
 import flower7 from "../assets/flower-7.webp";
 import flower8 from "../assets/flower-8.webp";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../Context/CartContext";
 
 function TrendingGifts() {
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
   const products = [
     { img: flower1, title: "Red and Pink Roses Special Bouquet", price: 1799, oldPrice: 2399, discount: "26% OFF", rating: 5, reviews: 720 },
     { img: flower2, title: "Forever Love 12 Red Roses Bouquet", price: 1499, oldPrice: 1999, discount: "26% OFF", rating: 4.6, reviews: 672 },
@@ -39,7 +43,8 @@ function TrendingGifts() {
           {products.map((item, i) => (
             <div
               key={i}
-              className="min-w-[300px] bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 group relative overflow-hidden transform hover:-translate-y-3"
+              onClick={() => navigate('/product-details', { state: { product: { ...item, images: [item.img] } } })}
+              className="cursor-pointer min-w-[300px] flex flex-col justify-between bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 group relative overflow-hidden transform hover:-translate-y-3"
             >
               {/* Image */}
               <div className="relative h-[280px] w-full overflow-hidden">
@@ -85,6 +90,23 @@ function TrendingGifts() {
                   <span>{item.rating}</span>
                   <span>({item.reviews})</span>
                 </div>
+
+                {/* Add to Cart Button */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    addToCart({
+                      id: item.title,
+                      name: item.title,
+                      price: item.price,
+                      image: item.img
+                    });
+                    alert(`${item.title} added to cart!`);
+                  }}
+                  className="w-full mt-4 bg-pink-500 hover:bg-pink-600 text-white font-semibold flex items-center justify-center py-2.5 rounded-xl transition duration-300"
+                >
+                  Add to Cart
+                </button>
               </div>
 
               {/* Hover Border */}

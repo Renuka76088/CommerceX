@@ -225,167 +225,6 @@ const trendingItems = [
     "Valentines day gift",
   ];
 
-     const menuItems1  = [
-  { name: 'Home', path: '/' },
-
-  {
-    name: 'Flower Category',
-    path: '/flower-category',
-    subcategories: [
-      {
-        title: 'Flower Bouquets',
-        items: [
-          'All Bouquets',
-          'Rose Bouquets',
-          'Carnation Bouquets',
-          'Gerbera Bouquets',
-          'Lily Bouquets',
-          'Orchid Bouquets',
-          'Mixed Flower Bouquets'
-        ]
-      },
-      {
-        title: 'Flower Boxes',
-        items: [
-          'Rose Flower Box',
-          'Mixed Flower Box',
-          'Luxury Flower Box',
-          'Heart Shape Flower Box'
-        ]
-      },
-      {
-        title: 'Flower Baskets',
-        items: [
-          'Rose Basket',
-          'Mixed Flower Basket',
-          'Carnation Basket',
-          'Orchid Basket'
-        ]
-      },
-      {
-        title: 'Flower Combos',
-        items: [
-          'Flowers With Cake',
-          'Flowers With Chocolate',
-          'Flowers With Teddy',
-          'Flowers With Gifts'
-        ]
-      },
-      {
-        title: 'Loose Flowers',
-        items: [
-          'Rose Petals',
-          'Marigold Flowers',
-          'Jasmine Flowers',
-          'Loose Mixed Flowers'
-        ]
-      },
-      {
-        title: 'Flower Garlands',
-        items: [
-          'Rose Garlands',
-          'Marigold Garlands',
-          'Jasmine Garlands',
-          'Wedding Garlands'
-        ]
-      }
-    ]
-  },
-
-  {
-    name: 'Flower Products',
-    path: '/flower-products',
-    subcategories: [
-      {
-        title: 'Rose Bouquets',
-        items: [
-          '12 Red Rose Bouquet',
-          '25 Red Rose Bouquet',
-          '50 Red Rose Bouquet',
-          '100 Red Rose Bouquet'
-        ]
-      },
-      {
-        title: 'Mixed Bouquets',
-        items: [
-          'Mixed Flower Bouquet',
-          'Seasonal Flower Bouquet',
-          'Premium Mixed Bouquet'
-        ]
-      },
-      {
-        title: 'Lily Bouquets',
-        items: [
-          'White Lily Bouquet',
-          'Pink Lily Bouquet',
-          'Mixed Lily Bouquet'
-        ]
-      },
-      {
-        title: 'Flower Boxes',
-        items: [
-          'Red Rose Box',
-          'Luxury Flower Box',
-          'Heart Shape Flower Box'
-        ]
-      },
-      {
-        title: 'Flower Baskets',
-        items: [
-          'Rose Basket',
-          'Mixed Flower Basket',
-          'Premium Flower Basket'
-        ]
-      }
-    ]
-  },
-
-  {
-    name: 'Flower Decoration',
-    path: '/flower-decoration',
-    subcategories: [
-      {
-        title: 'Wedding Decoration',
-        items: [
-          'Haldi Decoration',
-          'Mehndi Decoration',
-          'Wedding Stage Decoration',
-          'Table Decoration',
-          'Mandap Decoration',
-          'varmala studio'
-        ]
-      },
-      {
-        title: 'Event Decoration',
-        items: [
-          'Sacred Flowers',
-          'Birthday Decoration',
-          'Anniversary Decoration',
-          'Entrance Decor',
-          'photo-booth',
-          'Baby Shower Decoration',
-          'Proposal Decoration'
-        ]
-      },
-      {
-        title: 'Car Decoration',
-        items: [
-          'Wedding Car Decoration',
-          'Bride Car Decoration',
-          'Rose Car Decoration',
-          'Ribbon Flower Car Decoration'
-        ]
-      }
-    ]
-  },
-
-  { name: 'Gallery', path: '/gallery' },
-  { name: 'About Us', path: '/about' },
-  { name: 'Contact Us', path: '/contact' },
-  { name: 'FAQs', path: '/faqs' }
-];
-
-
   const options = [
     {
       label: "Become a Seller",
@@ -732,7 +571,7 @@ const menuItems = [
 <div className="h-full w-full bg-gray-50 overflow-y-auto pb-24">
   <div className="p-3 space-y-3">
 
-    {menuItems1.map((item, index) => {
+    {menuData.map((item, index) => {
 
       const hasSub = item.subcategories && item.subcategories.length > 0;
       const isExpanded = expandedMenu === index;
@@ -774,27 +613,34 @@ const menuItems = [
 
           {/* Sub Menu */}
           {hasSub && isExpanded && (
-            <div className="bg-white px-4 py-3 space-y-2">
-              {item.subcategories.map((sub, idx) => (
-                <div key={idx}>
-                  <h4 className="text-xs font-bold text-gray-400 mb-2">
-                    {sub.title}
-                  </h4>
-
-                  {sub.items.map((subItem, i) => (
+            <div className="bg-white px-4 py-3 space-y-3">
+              {item.subcategories.map((sub, idx) => {
+                const subPath = sub.path || `${item.path}/${sub.title.toLowerCase().replace(/ /g, "-")}`;
+                return (
+                  <div key={idx}>
                     <Link
-                      key={i}
-                      to={`${item.path}/${subItem
-                        .toLowerCase()
-                        .replace(/\s+/g, "-")}`}
+                      to={subPath}
                       onClick={() => setIsOpen(false)}
-                      className="block text-sm text-gray-600 hover:text-pink-500"
+                      className="text-sm font-bold text-gray-800 mb-2 block border-b pb-1"
                     >
-                      {subItem}
+                      {sub.title}
                     </Link>
-                  ))}
-                </div>
-              ))}
+
+                    <div className="pl-3 space-y-2 mt-2">
+                      {sub.items.map((subItem, i) => (
+                        <Link
+                          key={i}
+                          to={`${subPath}/${subItem.toLowerCase().replace(/ /g, "-")}`}
+                          onClick={() => setIsOpen(false)}
+                          className="block text-sm text-gray-600 hover:text-pink-500"
+                        >
+                          {subItem}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           )}
 
@@ -830,14 +676,20 @@ const menuItems = [
 
          <div className="flex items-center gap-4">
   
+  {/* Book Now Icon */}
+  <Link to="/book-now" className="relative text-gray-700 transition hover:text-blue-600">
+      <Wallet size={22} />
+  </Link>
+
   {/* Search Icon */}
   <Search 
     size={22} 
-    className="cursor-pointer"
+    className="cursor-pointer text-gray-700 transition hover:text-blue-600"
     onClick={() => setOpenSearch(true)} 
   />
 
-  <Link to="/cart" className="relative">
+  {/* Cart Icon */}
+  <Link to="/cart" className="relative text-gray-700 transition hover:text-blue-600">
     <div className="relative">
       <ShoppingCart size={22} />
       <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
