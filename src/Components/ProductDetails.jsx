@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Heart, Zap, Star, Info } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useCart } from "../Context/CartContext";
 
 import Roses1 from "../assets/Red Rose.avif";
 import Roses2 from "../assets/Red Rose-2.avif";
@@ -165,19 +166,25 @@ const products = [
 // ProductCard component (extracted systematically from the provided card JSX so that <ProductCard /> in grid works without error)
 const ProductCard = ({ product }) => {
   const [current, setCurrent] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) =>
-        prev === product.images.length - 1 ? 0 : prev + 1
+        prev === product.images?.length - 1 ? 0 : prev + 1
       );
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [product.images.length]);
+  }, [product.images?.length]);
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
+    <div 
+      onClick={() => {
+        window.scrollTo(0,0);
+        navigate('/product-details', { state: { product } })
+      }}
+      className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300 cursor-pointer">
 
       {/* IMAGE SLIDER */}
       <div className="relative overflow-hidden">
@@ -249,7 +256,13 @@ const ProductCard = ({ product }) => {
 };
 
 export default function ProductDetails() {
-  const images = [Roses1, Roses2, Roses, Roses1, Roses2];
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
+  
+  const passedProduct = location.state?.product || products[0];
+  const images = passedProduct.images || (passedProduct.img ? [passedProduct.img] : [Roses1, Roses2, Roses, Roses1, Roses2]);
+  
   const [activeImage, setActiveImage] = useState(images[0]);
   const [selectedGift, setSelectedGift] = useState(0);
   const [current, setCurrent] = useState(0);
@@ -262,9 +275,15 @@ export default function ProductDetails() {
       : products.filter((p) => p.category === activeCategory);
 
   // Fixed undefined "product" (used in useEffect + static card at bottom)
-  const product = products[0];
+  const product = passedProduct;
+
+  // Make sure activeImage updates if product changes via navigation
+  useEffect(() => {
+      setActiveImage(images[0]);
+  }, [passedProduct.title]);
 
   useEffect(() => {
+    if(!product.images) return;
     const interval = setInterval(() => {
       setCurrent((prev) =>
         prev === product.images.length - 1 ? 0 : prev + 1
@@ -272,7 +291,7 @@ export default function ProductDetails() {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [product.images.length]);
+  }, [product.images?.length]);
 
   
   return (
@@ -315,7 +334,7 @@ export default function ProductDetails() {
           <div className="flex justify-between items-start">
             <div>
               <h1 className="text-xl md:text-2xl font-semibold text-gray-800">
-                10 Red Roses Bouquet
+                {passedProduct.title || "10 Red Roses Bouquet"}
               </h1>
 
               <div className="flex items-center gap-3 mt-2">
@@ -335,13 +354,13 @@ export default function ProductDetails() {
           <div className="rounded-xl p-5 bg-gray-50 shadow-sm">
             <div className="flex items-center gap-4 flex-wrap">
               <span className="text-2xl font-bold text-gray-900">
-                ₹ 695
+                ₹ {parseInt(String(passedProduct.price).replace(/\D/g, '')) || 695}
               </span>
               <span className="line-through text-gray-400">
-                ₹ 770
+                ₹ {passedProduct.oldPrice || (parseInt(String(passedProduct.price).replace(/\D/g, '')) || 695) + 80}
               </span>
               <span className="text-green-600 font-medium text-sm">
-                10% OFF
+                {passedProduct.discount || "10% OFF"}
               </span>
             </div>
           </div>
@@ -421,13 +440,32 @@ export default function ProductDetails() {
             </div>
           </div>
 
-          {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="flex-1 border border-teal-700 text-teal-700 py-3 rounded-xl font-medium hover:bg-teal-50 transition-all duration-300">
+            <button 
+              onClick={() => {
+                addToCart({
+                  id: passedProduct.title || Math.random().toString(),
+                  name: passedProduct.title || 'Product',
+                  price: parseInt(String(passedProduct.price).replace(/\D/g, '')) || 595,
+                  image: images[0]
+                });
+                alert(passedProduct.title + " added to cart!");
+              }}
+              className="flex-1 border border-teal-700 text-teal-700 py-3 rounded-xl font-medium hover:bg-teal-50 transition-all duration-300">
               ADD TO CART
             </button>
-            <button className="flex-1 bg-gradient-to-r from-teal-700 to-teal-900 text-white py-3 rounded-xl font-medium shadow-lg hover:scale-105 transition-all duration-300">
-              BUY NOW | ₹ 695
+            <button 
+               onClick={() => {
+                addToCart({
+                  id: passedProduct.title || Math.random().toString(),
+                  name: passedProduct.title || 'Product',
+                  price: parseInt(String(passedProduct.price).replace(/\D/g, '')) || 595,
+                  image: images[0]
+                });
+                navigate('/cart');
+              }}
+              className="flex-1 bg-gradient-to-r from-teal-700 to-teal-900 text-white py-3 rounded-xl font-medium shadow-lg hover:scale-105 transition-all duration-300">
+              BUY NOW | ₹ {parseInt(String(passedProduct.price).replace(/\D/g, '')) || 595}
             </button>
           </div>
 

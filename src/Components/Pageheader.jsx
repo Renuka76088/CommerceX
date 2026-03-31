@@ -9,10 +9,13 @@ import logo from '../assets/logo.png';
 import { FiPhoneCall } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { FaWhatsapp } from "react-icons/fa";
+import { useCart } from '../Context/CartContext';
 
 function Pageheader() {
+    const { getCartCount } = useCart();
     const [isOpen, setIsOpen] = useState(false);
     const [openSearch, setOpenSearch] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
     const navigate = useNavigate();
     const [expandedMenu, setExpandedMenu] = useState(null); // 2. Yeh line add karein (Error yahi se aa raha hai)
   const [open, setOpen] = useState(false);
@@ -180,6 +183,29 @@ function Pageheader() {
   { name: 'Contact Us', path: '/contact' },
   { name: 'FAQs', path: '/faqs' }
 ];
+
+  const allSearchableItems = React.useMemo(() => {
+    let items = [];
+    menuData.forEach((cat) => {
+      if (cat.subcategories) {
+        cat.subcategories.forEach((sub) => {
+          const subPath = sub.path || `${cat.path}/${sub.title.toLowerCase().replace(/ /g, "-")}`;
+          items.push({ name: sub.title, path: subPath, type: "Category" });
+          sub.items.forEach((item) => {
+            const itemPath = `${subPath}/${item.toLowerCase().replace(/ /g, "-")}`;
+            items.push({ name: item, path: itemPath, type: "Product" });
+          });
+        });
+      } else {
+        items.push({ name: cat.name, path: cat.path, type: "Page" });
+      }
+    });
+    return items;
+  }, []);
+
+  const filteredSearch = searchQuery.trim() === "" 
+    ? [] 
+    : allSearchableItems.filter((item) => item.name.toLowerCase().includes(searchQuery.toLowerCase())).slice(0, 8);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -429,7 +455,7 @@ const menuItems = [
           </div>
 
           {/* Search */}
-          <div className="flex-1 mx-16">
+          <div className="flex-1 mx-16 relative">
             <div className="relative">
               <Search
                 size={20}
@@ -437,10 +463,34 @@ const menuItems = [
               />
               <input
                 type="text"
-                placeholder='Search "Cakes"'
-                className="w-full border border-gray-300 rounded-full py-3 pl-12 pr-4"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder='Search "Cakes", "Roses"...'
+                className="w-full border border-gray-300 rounded-full py-3 pl-12 pr-4 focus:outline-none focus:border-red-400"
               />
             </div>
+            {/* Desktop Search Dropdown */}
+            {searchQuery && (
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-100 max-h-[400px] overflow-y-auto z-[9999]">
+                {filteredSearch.length > 0 ? (
+                  filteredSearch.map((item, idx) => (
+                    <div 
+                      key={idx} 
+                      onClick={() => {
+                        setSearchQuery("");
+                        navigate('/product-details', { state: { product: { title: item.name, price: 595, img: '', delivery: "In 3 hours" } } });
+                      }}
+                      className="px-4 py-3 hover:bg-gray-50 cursor-pointer flex justify-between items-center border-b border-gray-50 last:border-0"
+                    >
+                      <span className="text-sm font-medium text-gray-700">{item.name}</span>
+                      <span className="text-[10px] text-gray-400 bg-gray-100 px-2 py-1 rounded">{item.type}</span>
+                    </div>
+                  ))
+                ) : (
+                  <div className="p-4 text-center text-sm text-gray-500">No results found</div>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Right */}
@@ -516,7 +566,7 @@ const menuItems = [
               <ShoppingCart size={22} />
               <span>Cart</span>
               <span className="absolute -top-2 right-2 bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                0
+                {getCartCount()}
               </span>
             </div>
           
@@ -550,7 +600,7 @@ const menuItems = [
     >
       {/* Trigger Button */}
      <Link
-  to="/shop-more"
+  to="/book-now"
   className="flex flex-col items-center text-sm transition-colors duration-200 cursor-pointer text-gray-600 hover:text-blue-600"
 >
   <Wallet
@@ -791,7 +841,7 @@ const menuItems = [
     <div className="relative">
       <ShoppingCart size={22} />
       <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
-        0
+        {getCartCount()}
       </span>
     </div>
   </Link>
@@ -840,12 +890,14 @@ const menuItems = [
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="relative mb-12"
+              className="relative mb-8"
             >
               <div className="group flex items-center gap-4 bg-white border-2 border-pink-50 rounded-2xl px-5 py-4 shadow-sm focus-within:shadow-md focus-within:border-pink-200 transition-all duration-300">
                 <Search className="text-pink-400 group-focus-within:scale-110 transition-transform" size={22} />
                 <input
                   type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder='Search for "Heart Cakes" or "Roses"...'
                   autoFocus
                   className="w-full outline-none text-lg text-gray-700 placeholder-gray-300 bg-transparent"
@@ -853,39 +905,66 @@ const menuItems = [
               </div>
             </motion.div>
 
-            {/* TRENDING SECTION */}
+            {/* TRENDING OR RESULTS SECTION */}
             <div className="space-y-6">
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="flex items-center gap-2"
-              >
-                <div className="bg-orange-100 p-1.5 rounded-lg">
-                  <Flame size={18} className="text-orange-500" />
+              {searchQuery.trim() ? (
+                <div className="bg-white rounded-2xl shadow-sm border border-pink-50 overflow-hidden">
+                  {filteredSearch.length > 0 ? (
+                    filteredSearch.map((item, i) => (
+                      <div 
+                        key={i} 
+                        onClick={() => {
+                          setOpenSearch(false);
+                          setSearchQuery("");
+                          navigate('/product-details', { state: { product: { title: item.name, price: 595, img: '', delivery: "In 3 hours" } } });
+                        }}
+                        className="px-5 py-4 hover:bg-pink-50 cursor-pointer flex justify-between items-center border-b border-pink-50 last:border-0 transition-colors"
+                      >
+                        <span className="text-base font-medium text-gray-700">{item.name}</span>
+                        <span className="text-[10px] text-pink-500 bg-pink-50 px-2 py-1 rounded">{item.type}</span>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="p-6 text-center text-gray-500">No results found for "{searchQuery}"</div>
+                  )}
                 </div>
-                <p className="text-[16px] font-bold text-gray-600 uppercase tracking-wider">
-                  Trending Now
-                </p>
-              </motion.div>
-
-              <div className="flex flex-wrap gap-3">
-                {trendingItems.map((item, i) => (
-                  <motion.button
-                    key={i}
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.1 + i * 0.05 }}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setOpenSearch(false)}
-                    className="group flex items-center gap-2 bg-pink-50 hover:bg-pink-500 border border-pink-100 hover:border-pink-500 text-pink-700 hover:text-white px-5 py-2.5 rounded-2xl text-[14px] font-medium transition-all duration-200"
+              ) : (
+                <>
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="flex items-center gap-2"
                   >
-                    {item}
-                    <ArrowUpRight size={14} className="opacity-50 group-hover:opacity-100" />
-                  </motion.button>
-                ))}
-              </div>
+                    <div className="bg-orange-100 p-1.5 rounded-lg">
+                      <Flame size={18} className="text-orange-500" />
+                    </div>
+                    <p className="text-[16px] font-bold text-gray-600 uppercase tracking-wider">
+                      Trending Now
+                    </p>
+                  </motion.div>
+
+                  <div className="flex flex-wrap gap-3">
+                    {trendingItems.map((item, i) => (
+                      <motion.button
+                        key={i}
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.1 + i * 0.05 }}
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => {
+                          setSearchQuery(item);
+                        }}
+                        className="group flex items-center gap-2 bg-pink-50 hover:bg-pink-500 border border-pink-100 hover:border-pink-500 text-pink-700 hover:text-white px-5 py-2.5 rounded-2xl text-[14px] font-medium transition-all duration-200"
+                      >
+                        {item}
+                        <ArrowUpRight size={14} className="opacity-50 group-hover:opacity-100" />
+                      </motion.button>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
 
           </div>

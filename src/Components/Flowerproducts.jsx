@@ -17,6 +17,7 @@ import Blush2 from '../assets/pastel-blooms-of-serenity-2.avif'
 import Bouquet1 from '../assets/a-bouquet-of-tender-moments-9717590fl-B_0.avif'
 import Rose25 from '../assets/flower-6.webp'
 import { Link } from "react-router-dom";
+import { useCart } from "../Context/CartContext";
 
 
 const categories = [
@@ -528,13 +529,11 @@ const filteredProducts = products.filter(
   </div>
 
   {/* PRODUCT GRID */}
-  <Link to="/product-details">
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-      {filteredProducts.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
-  </Link>
+  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+    {filteredProducts.map((product) => (
+      <ProductCard key={product.id} product={product} />
+    ))}
+  </div>
 
 </div>
    
@@ -549,6 +548,7 @@ const filteredProducts = products.filter(
 /* 🔥 Separate ProductCard Component */
 function ProductCard({ product }) {
   const [current, setCurrent] = useState(0);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -560,73 +560,92 @@ function ProductCard({ product }) {
     return () => clearInterval(interval);
   }, [product.images.length]);
 
+  const handleAdd = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart({
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: product.images[0]
+    });
+    alert(product.title + " added to cart!");
+  };
+
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
-
-      {/* IMAGE SLIDER */}
-      <div className="relative overflow-hidden">
-        <div
-          className="flex transition-transform duration-700 ease-in-out"
-          style={{
-            transform: `translateX(-${current * 100}%)`,
-          }}
-        >
-          {product.images.map((img, index) => (
-            <img
-              key={index}
-              src={img}
-              alt={product.title}
-              className="h-48 md:h-60 w-full object-cover flex-shrink-0"
-            />
-          ))}
-        </div>
-
-        <span className="absolute top-3 left-3 bg-teal-700 text-white text-xs px-3 py-1 rounded-md font-semibold">
-          Best Seller
-        </span>
-
-        <button className="absolute top-3 right-3 bg-white p-2 rounded-full shadow">
-          <Heart size={16} className="text-gray-600" />
-        </button>
-      </div>
-
-      {/* CONTENT */}
-      <div className="p-3 md:p-4">
-        <h3 className="text-sm md:text-base font-semibold text-gray-800 mb-1 line-clamp-1">
-          {product.title}
-        </h3>
-
-        <div className="flex items-center gap-2 mb-1">
-          <span className="font-bold text-gray-900">
-            ₹{product.price}
-          </span>
-          <span className="line-through text-gray-400 text-xs">
-            ₹{product.oldPrice}
-          </span>
-          <span className="text-orange-500 text-xs font-semibold">
-            {product.discount}
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2 mb-2">
-          <div className="flex items-center bg-green-600 text-white text-xs px-2 py-1 rounded">
-            <Star size={10} className="mr-1 fill-white" />
-            {product.rating}
+    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300 flex flex-col h-full relative cursor-pointer group">
+      <Link to="/product-details" className="flex flex-col h-full pb-14">
+        {/* IMAGE SLIDER */}
+        <div className="relative overflow-hidden h-48 md:h-60 w-full">
+          <div
+            className="flex transition-transform duration-700 ease-in-out h-full w-full"
+            style={{
+              transform: `translateX(-${current * 100}%)`,
+            }}
+          >
+            {product.images.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={product.title}
+                className="h-full w-full object-cover flex-shrink-0"
+              />
+            ))}
           </div>
-          <span className="text-gray-500 text-xs">
-            ({product.reviews})
+
+          <span className="absolute top-3 left-3 bg-teal-700 text-white text-[10px] md:text-xs px-2 md:px-3 py-1 rounded-md font-semibold z-10">
+            Best Seller
           </span>
+
+          <button className="absolute top-3 right-3 bg-white p-2 rounded-full shadow z-10 hover:bg-gray-50">
+            <Heart size={16} className="text-gray-600" />
+          </button>
         </div>
 
-        <div className="flex justify-between items-center text-xs text-gray-600">
-          <span>
-            Delivery:{" "}
-            <span className="text-teal-600 font-medium">
-              {product.delivery}
+        {/* CONTENT */}
+        <div className="p-3 md:p-4 flex flex-col flex-1">
+          <h3 className="text-sm md:text-base font-semibold text-gray-800 mb-1 line-clamp-1">
+            {product.title}
+          </h3>
+
+          <div className="flex flex-wrap items-center gap-2 mb-1">
+            <span className="font-bold text-gray-900 text-sm md:text-base">
+              ₹{product.price}
             </span>
-          </span>
-          <Info size={14} />
+            <span className="line-through text-gray-400 text-xs">
+              ₹{product.oldPrice}
+            </span>
+            <span className="text-orange-500 text-[10px] md:text-xs font-semibold">
+              {product.discount}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center bg-green-600 text-white text-[10px] md:text-xs px-2 py-0.5 rounded">
+              <Star size={10} className="mr-1 fill-white" />
+              {product.rating}
+            </div>
+            <span className="text-gray-500 text-[10px] md:text-xs">
+              ({product.reviews})
+            </span>
+          </div>
+
+          <div className="flex justify-between items-center text-[10px] md:text-xs text-gray-600 mt-auto">
+            <span>
+              Delivery:{" "}
+              <span className="text-teal-600 font-medium">
+                {product.delivery}
+              </span>
+            </span>
+            <Info size={14} className="flex-shrink-0" />
+          </div>
         </div>
+      </Link>
+      
+      {/* Absolute positioned button at the bottom */}
+      <div className="absolute bottom-3 left-3 right-3 px-3 py-2 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-bold text-sm md:text-base rounded-lg text-center shadow-md transition-all duration-300 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0"
+           onClick={handleAdd}>
+        Shop Now
       </div>
     </div>
   );

@@ -26,6 +26,8 @@ import SpecializedDecoration from './Decoration/SpecializedDecoration'
 import Visitourshop from './Decoration/Visitourshop'
 import Blog from './Decoration/Blog'
 import BookNow from './Components/BookNow'
+import DecorationBookingForm from './Components/DecorationBookingForm'
+import { CartProvider } from './Context/CartContext'
 
 import Gallery from './Components/Gallery'
 import ShopMore from './Components/ShopMore'
@@ -113,6 +115,7 @@ function App() {
 
   return (
     <>
+    <CartProvider>
     <BrowserRouter>
      <ScrollToTop />
     <Pageheader/>
@@ -141,6 +144,7 @@ function App() {
       <Route path='/visit-our-shop' element={<Visitourshop/>}/>
       <Route path='/blog' element={<Blog/>}/>
       <Route path='/book-now' element={<BookNow/>}/>
+      <Route path='/decoration-booking' element={<DecorationBookingForm/>}/>
       <Route path='/gallery' element={<Gallery/>}/>
       <Route path='/shop-more' element={<ShopMore/>}/>
       <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
@@ -243,6 +247,7 @@ function App() {
     </Routes>
     <Footer/>
     </BrowserRouter>
+    </CartProvider>
     
     </>
   )

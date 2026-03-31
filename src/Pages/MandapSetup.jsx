@@ -82,9 +82,10 @@ const MandapSetup = () => {
 
           {products.map((product, i) => (
             <div
-              key={i}
-              className="bg-white rounded-xl shadow-sm hover:shadow-lg transition group"
-            >
+      key={i}
+      onClick={() => navigate('/product-details', { state: { product } })}
+      className="bg-white rounded-xl shadow-sm hover:shadow-lg transition group cursor-pointer relative"
+    >
 
               <div className="overflow-hidden rounded-t-xl">
                 <img
@@ -111,9 +112,25 @@ const MandapSetup = () => {
                     </span>
                   </div>
 
-                  <button className="text-xs bg-pink-500 hover:bg-pink-600 text-white px-3 py-1 rounded">
-                    Add
-                  </button>
+                  <button 
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isDecoration = window.location.pathname.toLowerCase().includes('decoration');
+        if (isDecoration) {
+          navigate('/decoration-booking', { state: { decoration: product } });
+        } else {
+          let parsedPrice = 595;
+          if (product && product.price) {
+             parsedPrice = parseInt(String(product.price).replace(/\D/g, '')) || 595;
+          }
+          addToCart({ id: product.title || Math.random().toString(), name: product.title || 'Flower Product', price: parsedPrice, image: product.img });
+          alert("Item added to cart successfully!");
+        }
+      }}
+      className="text-xs bg-pink-500 hover:bg-pink-600 text-white px-3 py-1 rounded z-10 relative">
+      Add
+    </button>
 
                 </div>
 
