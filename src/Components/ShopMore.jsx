@@ -16,7 +16,8 @@ import Blush1 from '../assets/cat-3.webp'
 import Blush2 from '../assets/pastel-blooms-of-serenity-2.avif'
 import Bouquet1 from '../assets/a-bouquet-of-tender-moments-9717590fl-B_0.avif'
 import Rose25 from '../assets/flower-6.webp'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useCart } from '../Context/CartContext';
 
 
 const categories = [
@@ -157,9 +158,7 @@ export default function ShopMore() {
       {/* PRODUCT GRID */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {products.map((product) => (
-          <Link key={product.id} to="/product-details">
-            <ProductCard product={product} />
-          </Link>
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
 
@@ -175,6 +174,8 @@ export default function ShopMore() {
 /* 🔥 Separate ProductCard Component */
 function ProductCard({ product }) {
   const [current, setCurrent] = useState(0);
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -187,7 +188,10 @@ function ProductCard({ product }) {
   }, [product.images.length]);
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
+    <div 
+      onClick={() => navigate('/product-details', { state: { product } })}
+      className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300 cursor-pointer flex flex-col h-full"
+    >
 
       {/* IMAGE SLIDER */}
       <div className="relative overflow-hidden">
@@ -217,42 +221,60 @@ function ProductCard({ product }) {
       </div>
 
       {/* CONTENT */}
-      <div className="p-3 md:p-4">
-        <h3 className="text-sm md:text-base font-semibold text-gray-800 mb-1 line-clamp-1">
-          {product.title}
-        </h3>
+      <div className="p-3 md:p-4 flex flex-1 flex-col justify-between">
+        <div>
+          <h3 className="text-sm md:text-base font-semibold text-gray-800 mb-1 line-clamp-1">
+            {product.title}
+          </h3>
 
-        <div className="flex items-center gap-2 mb-1">
-          <span className="font-bold text-gray-900">
-            ₹{product.price}
-          </span>
-          <span className="line-through text-gray-400 text-xs">
-            ₹{product.oldPrice}
-          </span>
-          <span className="text-orange-500 text-xs font-semibold">
-            {product.discount}
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2 mb-2">
-          <div className="flex items-center bg-green-600 text-white text-xs px-2 py-1 rounded">
-            <Star size={10} className="mr-1 fill-white" />
-            {product.rating}
-          </div>
-          <span className="text-gray-500 text-xs">
-            ({product.reviews})
-          </span>
-        </div>
-
-        <div className="flex justify-between items-center text-xs text-gray-600">
-          <span>
-            Delivery:{" "}
-            <span className="text-teal-600 font-medium">
-              {product.delivery}
+          <div className="flex items-center gap-2 mb-1">
+            <span className="font-bold text-gray-900">
+              ₹{product.price}
             </span>
-          </span>
-          <Info size={14} />
+            <span className="line-through text-gray-400 text-xs">
+              ₹{product.oldPrice}
+            </span>
+            <span className="text-orange-500 text-xs font-semibold">
+              {product.discount}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center bg-green-600 text-white text-xs px-2 py-1 rounded">
+              <Star size={10} className="mr-1 fill-white" />
+              {product.rating}
+            </div>
+            <span className="text-gray-500 text-xs">
+              ({product.reviews})
+            </span>
+          </div>
+
+          <div className="flex justify-between items-center text-xs text-gray-600">
+            <span>
+              Delivery:{" "}
+              <span className="text-teal-600 font-medium">
+                {product.delivery}
+              </span>
+            </span>
+            <Info size={14} />
+          </div>
         </div>
+
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            addToCart({
+              id: product.title,
+              name: product.title,
+              price: product.price,
+              image: product.images[0]
+            });
+            alert(`${product.title} added to cart!`);
+          }}
+          className="w-full mt-4 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium py-2 rounded-lg transition-colors"
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );
